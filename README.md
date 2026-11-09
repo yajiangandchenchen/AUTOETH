@@ -165,7 +165,7 @@ python3 tools/verify_bit_geometry.py
 
 - **传输层未接入**。`autoeth-client` 命令只到「接受」为止，不产生真实 RPC；socket 与 owner 循环待实现。
 - **IPv6 仅有编解码与静态用例**，未做跨主机实机验证。
-- **静态分析**报告的 warning 级发现尚未处理；error 级已收口（MISRA C++ 1-0-3，详见 `docs/08_实施/`）。
+- **静态分析**报告的 warning 级发现尚未处理；error 级已收口（MISRA C++ 1-0-3）。
 
 ## 文档
 
@@ -175,6 +175,6 @@ python3 tools/verify_bit_geometry.py
 | `docs/06_需求/需求规格.md` | 248 条编号需求，逐条标注原件出处 |
 | `docs/06_需求/需求规格审查报告.md` | 需求与原件逐条回查结论 |
 | `docs/07_设计/详细设计.md` | 内部实现设计与分阶段实施计划 |
-| `docs/08_实施/` | 代码生成、静态分析与模型检验记录 |
+
 
 需求与设计的正文为中文，引用合同条款时附英文原文编号与摘录。
