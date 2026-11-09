@@ -1,0 +1,599 @@
+{
+  "schema_version": 1,
+  "schemas": [
+    {
+      "name": "empty_request",
+      "root": 1,
+      "role": "methodRequest",
+      "argumentSet": true,
+      "payloadByteOrder": "Big",
+      "tlvStaticLengthBytes": 0,
+      "dynamicTaggedLength": false,
+      "defaultAlignmentBits": 8,
+      "nodes": [
+        {
+          "id": 1,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": []
+        }
+      ]
+    },
+    {
+      "name": "snapshot_response",
+      "root": 1,
+      "role": "methodResponse",
+      "argumentSet": true,
+      "payloadByteOrder": "Big",
+      "tlvStaticLengthBytes": 0,
+      "dynamicTaggedLength": false,
+      "defaultAlignmentBits": 8,
+      "nodes": [
+        {
+          "id": 1,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "snapshot",
+              "node": 2,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "revision",
+              "node": 3,
+              "optional": false
+            },
+            {
+              "name": "speed_centi",
+              "node": 4,
+              "optional": false
+            },
+            {
+              "name": "temperature_deci",
+              "node": 5,
+              "optional": false
+            },
+            {
+              "name": "flags",
+              "node": 6,
+              "optional": false
+            },
+            {
+              "name": "label",
+              "node": 7,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "kind": "Unsigned",
+          "widthBits": 32
+        },
+        {
+          "id": 4,
+          "kind": "Unsigned",
+          "widthBits": 16
+        },
+        {
+          "id": 5,
+          "kind": "Signed",
+          "widthBits": 16
+        },
+        {
+          "id": 6,
+          "kind": "Unsigned",
+          "widthBits": 8
+        },
+        {
+          "id": 7,
+          "kind": "String",
+          "encoding": "UTF8",
+          "lengthBytes": 2,
+          "maxWireBytes": 72,
+          "maxUnicodeScalars": 16
+        }
+      ]
+    },
+    {
+      "name": "snapshot_event",
+      "root": 1,
+      "role": "event",
+      "argumentSet": false,
+      "payloadByteOrder": "Big",
+      "tlvStaticLengthBytes": 0,
+      "dynamicTaggedLength": false,
+      "defaultAlignmentBits": 8,
+      "nodes": [
+        {
+          "id": 1,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "revision",
+              "node": 2,
+              "optional": false
+            },
+            {
+              "name": "speed_centi",
+              "node": 3,
+              "optional": false
+            },
+            {
+              "name": "temperature_deci",
+              "node": 4,
+              "optional": false
+            },
+            {
+              "name": "flags",
+              "node": 5,
+              "optional": false
+            },
+            {
+              "name": "label",
+              "node": 6,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "Unsigned",
+          "widthBits": 32
+        },
+        {
+          "id": 3,
+          "kind": "Unsigned",
+          "widthBits": 16
+        },
+        {
+          "id": 4,
+          "kind": "Signed",
+          "widthBits": 16
+        },
+        {
+          "id": 5,
+          "kind": "Unsigned",
+          "widthBits": 8
+        },
+        {
+          "id": 6,
+          "kind": "String",
+          "encoding": "UTF8",
+          "lengthBytes": 2,
+          "maxWireBytes": 72,
+          "maxUnicodeScalars": 16
+        }
+      ]
+    },
+    {
+      "name": "calibration_request",
+      "root": 1,
+      "role": "methodRequest",
+      "argumentSet": true,
+      "payloadByteOrder": "Big",
+      "tlvStaticLengthBytes": 0,
+      "dynamicTaggedLength": false,
+      "defaultAlignmentBits": 8,
+      "nodes": [
+        {
+          "id": 1,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "calibration",
+              "node": 2,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "speed_limit_centi",
+              "node": 3,
+              "optional": false
+            },
+            {
+              "name": "gain_milli",
+              "node": 4,
+              "optional": false
+            },
+            {
+              "name": "label",
+              "node": 5,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "kind": "Unsigned",
+          "widthBits": 16
+        },
+        {
+          "id": 4,
+          "kind": "Unsigned",
+          "widthBits": 16
+        },
+        {
+          "id": 5,
+          "kind": "String",
+          "encoding": "UTF8",
+          "lengthBytes": 2,
+          "maxWireBytes": 72,
+          "maxUnicodeScalars": 16
+        }
+      ]
+    },
+    {
+      "name": "calibration_response",
+      "root": 1,
+      "role": "methodResponse",
+      "argumentSet": true,
+      "payloadByteOrder": "Big",
+      "tlvStaticLengthBytes": 0,
+      "dynamicTaggedLength": false,
+      "defaultAlignmentBits": 8,
+      "nodes": [
+        {
+          "id": 1,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "state",
+              "node": 2,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "revision",
+              "node": 3,
+              "optional": false
+            },
+            {
+              "name": "calibration",
+              "node": 4,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "kind": "Unsigned",
+          "widthBits": 32
+        },
+        {
+          "id": 4,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "speed_limit_centi",
+              "node": 5,
+              "optional": false
+            },
+            {
+              "name": "gain_milli",
+              "node": 6,
+              "optional": false
+            },
+            {
+              "name": "label",
+              "node": 7,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "kind": "Unsigned",
+          "widthBits": 16
+        },
+        {
+          "id": 6,
+          "kind": "Unsigned",
+          "widthBits": 16
+        },
+        {
+          "id": 7,
+          "kind": "String",
+          "encoding": "UTF8",
+          "lengthBytes": 2,
+          "maxWireBytes": 72,
+          "maxUnicodeScalars": 16
+        }
+      ]
+    },
+    {
+      "name": "calibration_field",
+      "root": 1,
+      "role": "field",
+      "argumentSet": false,
+      "payloadByteOrder": "Big",
+      "tlvStaticLengthBytes": 0,
+      "dynamicTaggedLength": false,
+      "defaultAlignmentBits": 8,
+      "nodes": [
+        {
+          "id": 1,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "speed_limit_centi",
+              "node": 2,
+              "optional": false
+            },
+            {
+              "name": "gain_milli",
+              "node": 3,
+              "optional": false
+            },
+            {
+              "name": "label",
+              "node": 4,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "Unsigned",
+          "widthBits": 16
+        },
+        {
+          "id": 3,
+          "kind": "Unsigned",
+          "widthBits": 16
+        },
+        {
+          "id": 4,
+          "kind": "String",
+          "encoding": "UTF8",
+          "lengthBytes": 2,
+          "maxWireBytes": 72,
+          "maxUnicodeScalars": 16
+        }
+      ]
+    },
+    {
+      "name": "bulk_request",
+      "root": 1,
+      "role": "methodRequest",
+      "argumentSet": true,
+      "payloadByteOrder": "Big",
+      "tlvStaticLengthBytes": 0,
+      "dynamicTaggedLength": false,
+      "defaultAlignmentBits": 8,
+      "nodes": [
+        {
+          "id": 1,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "offset",
+              "node": 2,
+              "optional": false
+            },
+            {
+              "name": "length",
+              "node": 3,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "Unsigned",
+          "widthBits": 32
+        },
+        {
+          "id": 3,
+          "kind": "Unsigned",
+          "widthBits": 32
+        }
+      ]
+    },
+    {
+      "name": "bulk_response",
+      "root": 1,
+      "role": "methodResponse",
+      "argumentSet": true,
+      "payloadByteOrder": "Big",
+      "tlvStaticLengthBytes": 0,
+      "dynamicTaggedLength": false,
+      "defaultAlignmentBits": 8,
+      "nodes": [
+        {
+          "id": 1,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "total_size",
+              "node": 2,
+              "optional": false
+            },
+            {
+              "name": "offset",
+              "node": 3,
+              "optional": false
+            },
+            {
+              "name": "data",
+              "node": 4,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "Unsigned",
+          "widthBits": 64
+        },
+        {
+          "id": 3,
+          "kind": "Unsigned",
+          "widthBits": 32
+        },
+        {
+          "id": 4,
+          "kind": "ByteArray",
+          "maxReceiveCount": 1048576,
+          "lengthBytes": 4
+        }
+      ]
+    },
+    {
+      "name": "record_command",
+      "root": 1,
+      "role": "methodRequest",
+      "argumentSet": true,
+      "payloadByteOrder": "Big",
+      "tlvStaticLengthBytes": 0,
+      "dynamicTaggedLength": false,
+      "defaultAlignmentBits": 8,
+      "nodes": [
+        {
+          "id": 1,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "sequence",
+              "node": 2,
+              "optional": false
+            },
+            {
+              "name": "opcode",
+              "node": 3,
+              "optional": false
+            },
+            {
+              "name": "payload",
+              "node": 4,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "Unsigned",
+          "widthBits": 32
+        },
+        {
+          "id": 3,
+          "kind": "Unsigned",
+          "widthBits": 16
+        },
+        {
+          "id": 4,
+          "kind": "ByteArray",
+          "maxReceiveCount": 4096,
+          "lengthBytes": 2
+        }
+      ]
+    },
+    {
+      "name": "calibration_field_response",
+      "root": 1,
+      "role": "methodResponse",
+      "argumentSet": true,
+      "payloadByteOrder": "Big",
+      "tlvStaticLengthBytes": 0,
+      "dynamicTaggedLength": false,
+      "defaultAlignmentBits": 8,
+      "nodes": [
+        {
+          "id": 1,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "calibration",
+              "node": 2,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "speed_limit_centi",
+              "node": 3,
+              "optional": false
+            },
+            {
+              "name": "gain_milli",
+              "node": 4,
+              "optional": false
+            },
+            {
+              "name": "label",
+              "node": 5,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "kind": "Unsigned",
+          "widthBits": 16
+        },
+        {
+          "id": 4,
+          "kind": "Unsigned",
+          "widthBits": 16
+        },
+        {
+          "id": 5,
+          "kind": "String",
+          "encoding": "UTF8",
+          "lengthBytes": 2,
+          "maxWireBytes": 72,
+          "maxUnicodeScalars": 16
+        }
+      ]
+    }
+  ]
+}

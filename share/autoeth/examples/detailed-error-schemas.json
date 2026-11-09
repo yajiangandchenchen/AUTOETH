@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "schemas": [
+    {
+      "name": "diagnostic_request",
+      "root": 1,
+      "role": "methodRequest",
+      "argumentSet": true,
+      "payloadByteOrder": "Big",
+      "tlvStaticLengthBytes": 0,
+      "dynamicTaggedLength": false,
+      "defaultAlignmentBits": 8,
+      "nodes": [
+        {
+          "id": 1,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "diagnostic_code",
+              "node": 2,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "Unsigned",
+          "widthBits": 8
+        }
+      ]
+    },
+    {
+      "name": "diagnostic_success_response",
+      "root": 1,
+      "role": "methodResponse",
+      "argumentSet": true,
+      "payloadByteOrder": "Big",
+      "tlvStaticLengthBytes": 0,
+      "dynamicTaggedLength": false,
+      "defaultAlignmentBits": 8,
+      "nodes": [
+        {
+          "id": 1,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "status",
+              "node": 2,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "Unsigned",
+          "widthBits": 16
+        }
+      ]
+    },
+    {
+      "name": "diagnostic_error_response",
+      "root": 1,
+      "role": "methodResponse",
+      "argumentSet": true,
+      "payloadByteOrder": "Big",
+      "tlvStaticLengthBytes": 0,
+      "dynamicTaggedLength": false,
+      "defaultAlignmentBits": 8,
+      "nodes": [
+        {
+          "id": 1,
+          "kind": "Struct",
+          "lengthBytes": 0,
+          "tagged": false,
+          "members": [
+            {
+              "name": "reason",
+              "node": 2,
+              "optional": false
+            },
+            {
+              "name": "message",
+              "node": 3,
+              "optional": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "kind": "Unsigned",
+          "widthBits": 16
+        },
+        {
+          "id": 3,
+          "kind": "String",
+          "encoding": "UTF8",
+          "lengthBytes": 1,
+          "maxWireBytes": 64,
+          "maxUnicodeScalars": 48
+        }
+      ]
+    }
+  ]
+}

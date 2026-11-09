@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "profile": "08",
+  "state_kind": "protect",
+  "state": {
+    "Counter": 0
+  }
+}

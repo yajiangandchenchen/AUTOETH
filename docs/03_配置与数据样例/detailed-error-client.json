@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "node_name": "autoeth-detailed-error-client",
+  "client_id": 4660,
+  "resources": {
+    "max_frame_bytes": 8388608,
+    "max_owned_payload_bytes": 268435456,
+    "max_commands": 4096,
+    "max_active_rpcs": 4096,
+    "max_tcp_connections": 128,
+    "max_tp_rx_contexts": 128,
+    "max_visible_sd_instances": 4096,
+    "max_server_subscriptions": 4096,
+    "max_schema_nodes": 4096,
+    "max_schema_depth": 64,
+    "max_trace_records": 4096,
+    "trace_payload_bytes": 1048576,
+    "max_e2e_rx_contexts": 4096,
+    "max_udp_sockets": 128,
+    "max_multicast_memberships": 256
+  },
+  "scheduling": {
+    "main_period_ns": 1000000,
+    "shutdown_drain_ns": 2000000000,
+    "transport_abort_cleanup_ns": 1000000000,
+    "connect_retry_ns": 100000000,
+    "rpc_timeout_ns": 1000000000
+  },
+  "correlation": {
+    "retirement_horizon_ns": 60000000000,
+    "fresh_context_asserted": true
+  },
+  "interfaces": [
+    {
+      "id": "loop",
+      "name": "lo",
+      "local_address": "127.0.0.2",
+      "address_family": "IPv4",
+      "scope_id": 0,
+      "sd_port": 30490,
+      "sd_multicast_address": "239.255.0.1",
+      "loopback_enabled": true,
+      "multicast_hops": 1
+    }
+  ],
+  "schemas": [
+    {
+      "file": "detailed-error-schemas.json"
+    }
+  ],
+  "security": {
+    "providers": []
+  },
+  "compatibility": {
+    "sd_profile": "FO_R24_11",
+    "classic_host": false
+  },
+  "capture": {
+    "enabled": false
+  },
+  "endpoints": [
+    {
+      "id": "client_udp",
+      "interface": "loop",
+      "transport": "UDP",
+      "local_port": 30510,
+      "tp_strategy": "FO_CONTIGUOUS",
+      "max_segment_payload_bytes": 1392,
+      "rx_timeout_ns": 1000000000,
+      "changed_overlap_reject": false,
+      "max_udp_datagram_bytes": 1472,
+      "udp_bundle_delay_ns": 1000000,
+      "max_bundle_messages": 64
+    },
+    {
+      "id": "client_tcp",
+      "interface": "loop",
+      "transport": "TCP",
+      "local_port": 0,
+      "tcp_role": "connect",
+      "tcp_no_delay": true
+    }
+  ],
+  "e2e_channels": [],
+  "provided_services": [],
+  "requested_services": [
+    {
+      "name": "DetailedErrorDemo",
+      "service_id": 9029,
+      "instance_id": 1,
+      "major": 1,
+      "minor": 1,
+      "methods": [
+        {
+          "method_id": 1,
+          "name": "ReadDiagnostic",
+          "kind": "request_response",
+          "request_schema": "diagnostic_request",
+          "response_schema": "diagnostic_success_response",
+          "transports": [
+            "UDP",
+            "TCP"
+          ],
+          "application_errors": [
+            1
+          ],
+          "detailed_errors": [
+            {
+              "application_error": 1,
+              "schema": "diagnostic_error_response"
+            }
+          ],
+          "unprotected": true
+        }
+      ],
+      "events": [],
+      "fields": [],
+      "event_groups": [],
+      "query_handle": "diagnostic",
+      "endpoints": [
+        "client_udp",
+        "client_tcp"
+      ],
+      "query": {
+        "service_id": 9029,
+        "instance_id": 1,
+        "major": 1,
+        "minor": 1,
+        "minor_match": "EXACT",
+        "transports": [
+          "UDP",
+          "TCP"
+        ]
+      },
+      "auto_require": true,
+      "capabilities": [],
+      "client_timing": {
+        "initial_find_min_ns": 0,
+        "initial_find_max_ns": 0,
+        "repetition_base_ns": 30000000,
+        "repetitions": 2,
+        "request_response_min_ns": 0,
+        "request_response_max_ns": 0,
+        "subscription_retry_delay_ns": 10000000,
+        "subscription_retry_max": 3,
+        "subscription_ttl_seconds": 3
+      }
+    }
+  ]
+}

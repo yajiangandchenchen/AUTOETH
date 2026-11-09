@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "node_name": "autoeth-client",
+  "client_id": 4660,
+  "resources": {
+    "max_frame_bytes": 8388608,
+    "max_owned_payload_bytes": 268435456,
+    "max_commands": 4096,
+    "max_active_rpcs": 4096,
+    "max_tcp_connections": 128,
+    "max_tp_rx_contexts": 128,
+    "max_visible_sd_instances": 4096,
+    "max_server_subscriptions": 4096,
+    "max_schema_nodes": 4096,
+    "max_schema_depth": 64,
+    "max_trace_records": 4096,
+    "trace_payload_bytes": 1048576,
+    "max_e2e_rx_contexts": 4096,
+    "max_udp_sockets": 128,
+    "max_multicast_memberships": 256
+  },
+  "scheduling": {
+    "main_period_ns": 1000000,
+    "shutdown_drain_ns": 2000000000,
+    "transport_abort_cleanup_ns": 1000000000,
+    "connect_retry_ns": 100000000,
+    "rpc_timeout_ns": 1000000000
+  },
+  "correlation": {
+    "retirement_horizon_ns": 60000000000,
+    "fresh_context_asserted": false
+  },
+  "interfaces": [
+    {
+      "id": "loop",
+      "name": "lo",
+      "local_address": "127.0.0.2",
+      "address_family": "IPv4",
+      "scope_id": 0,
+      "sd_port": 30490,
+      "sd_multicast_address": "239.255.0.1",
+      "loopback_enabled": true,
+      "multicast_hops": 1
+    }
+  ],
+  "schemas": [
+    {
+      "file": "vehicle-schemas.json"
+    }
+  ],
+  "security": {
+    "providers": []
+  },
+  "compatibility": {
+    "sd_profile": "FO_R24_11",
+    "classic_host": false
+  },
+  "capture": {
+    "enabled": false
+  },
+  "endpoints": [
+    {
+      "id": "client_udp",
+      "interface": "loop",
+      "transport": "UDP",
+      "local_port": 30510,
+      "tp_strategy": "FO_CONTIGUOUS",
+      "max_segment_payload_bytes": 1392,
+      "rx_timeout_ns": 1000000000,
+      "changed_overlap_reject": false,
+      "max_udp_datagram_bytes": 1472,
+      "udp_bundle_delay_ns": 1000000,
+      "max_bundle_messages": 64
+    },
+    {
+      "id": "client_tcp",
+      "interface": "loop",
+      "transport": "TCP",
+      "local_port": 0,
+      "tcp_role": "connect",
+      "tcp_no_delay": true
+    }
+  ],
+  "e2e_channels": [
+    {
+      "channel_id": "rpc_snapshot04",
+      "profile": "04",
+      "configuration_surface": "SourceC",
+      "config": {
+        "DataID": 168496129,
+        "Offset": 64,
+        "MinDataLength": 96,
+        "MaxDataLength": 32768,
+        "MaxDeltaCounter": 1
+      }
+    },
+    {
+      "channel_id": "rpc_bulk07",
+      "profile": "07",
+      "configuration_surface": "SourceC",
+      "config": {
+        "DataID": 168496130,
+        "Offset": 64,
+        "MinDataLength": 160,
+        "MaxDataLength": 33554432,
+        "MaxDeltaCounter": 1
+      }
+    },
+    {
+      "channel_id": "rpc_apply04m",
+      "profile": "04m",
+      "configuration_surface": "SourceC",
+      "config": {
+        "DataID": 168496141,
+        "Offset": 0,
+        "MinDataLength": 128,
+        "MaxDataLength": 32768,
+        "MaxDeltaCounter": 1
+      },
+      "source_id": 1193046
+    },
+    {
+      "channel_id": "rpc_get04m",
+      "profile": "04m",
+      "configuration_surface": "SourceC",
+      "config": {
+        "DataID": 168496144,
+        "Offset": 0,
+        "MinDataLength": 128,
+        "MaxDataLength": 32768,
+        "MaxDeltaCounter": 1
+      },
+      "source_id": 1193046
+    },
+    {
+      "channel_id": "rpc_set04m",
+      "profile": "04m",
+      "configuration_surface": "SourceC",
+      "config": {
+        "DataID": 168496145,
+        "Offset": 0,
+        "MinDataLength": 128,
+        "MaxDataLength": 32768,
+        "MaxDeltaCounter": 1
+      },
+      "source_id": 1193046
+    },
+    {
+      "channel_id": "event_snapshot04",
+      "profile": "04",
+      "configuration_surface": "SourceC",
+      "config": {
+        "DataID": 168496161,
+        "Offset": 64,
+        "MinDataLength": 96,
+        "MaxDataLength": 32768,
+        "MaxDeltaCounter": 1
+      },
+      "state_machine": {
+        "window_size_valid": 2,
+        "min_ok_state_init": 1,
+        "max_error_state_init": 0,
+        "min_ok_state_valid": 1,
+        "max_error_state_valid": 0,
+        "min_ok_state_invalid": 1,
+        "max_error_state_invalid": 0,
+        "window_size_init": 2,
+        "window_size_invalid": 2,
+        "clear_from_valid_to_invalid": false,
+        "transit_to_invalid_extended": false,
+        "combined_no_data_init_count": false
+      }
+    },
+    {
+      "channel_id": "event_calib04",
+      "profile": "04",
+      "configuration_surface": "SourceC",
+      "config": {
+        "DataID": 168496162,
+        "Offset": 64,
+        "MinDataLength": 96,
+        "MaxDataLength": 32768,
+        "MaxDeltaCounter": 1
+      },
+      "state_machine": {
+        "window_size_valid": 2,
+        "min_ok_state_init": 1,
+        "max_error_state_init": 0,
+        "min_ok_state_valid": 1,
+        "max_error_state_valid": 0,
+        "min_ok_state_invalid": 1,
+        "max_error_state_invalid": 0,
+        "window_size_init": 2,
+        "window_size_invalid": 2,
+        "clear_from_valid_to_invalid": false,
+        "transit_to_invalid_extended": false,
+        "combined_no_data_init_count": false
+      }
+    }
+  ],
+  "provided_services": [],
+  "requested_services": [
+    {
+      "name": "VehicleService",
+      "service_id": 4660,
+      "instance_id": 1,
+      "major": 1,
+      "minor": 1,
+      "methods": [
+        {
+          "method_id": 1,
+          "name": "ReadSnapshot",
+          "kind": "request_response",
+          "request_schema": "empty_request",
+          "response_schema": "snapshot_response",
+          "transports": [
+            "UDP"
+          ],
+          "application_errors": [],
+          "e2e": "rpc_snapshot04"
+        },
+        {
+          "method_id": 2,
+          "name": "ReadBulk",
+          "kind": "request_response",
+          "request_schema": "bulk_request",
+          "response_schema": "bulk_response",
+          "transports": [
+            "TCP",
+            "UDP"
+          ],
+          "udp_segment": true,
+          "application_errors": [
+            1,
+            3
+          ],
+          "e2e": "rpc_bulk07"
+        },
+        {
+          "method_id": 3,
+          "name": "ApplyCalibration",
+          "kind": "request_response",
+          "request_schema": "calibration_request",
+          "response_schema": "calibration_response",
+          "transports": [
+            "UDP"
+          ],
+          "application_errors": [
+            1,
+            2,
+            3
+          ],
+          "e2e": "rpc_apply04m"
+        },
+        {
+          "method_id": 4,
+          "name": "RecordCommand",
+          "kind": "fire_and_forget",
+          "request_schema": "record_command",
+          "transports": [
+            "UDP"
+          ],
+          "application_errors": [],
+          "unprotected": true
+        },
+        {
+          "method_id": 256,
+          "name": "CalibrationGetter",
+          "kind": "request_response",
+          "request_schema": "empty_request",
+          "response_schema": "calibration_field_response",
+          "transports": [
+            "UDP"
+          ],
+          "application_errors": [],
+          "e2e": "rpc_get04m"
+        },
+        {
+          "method_id": 257,
+          "name": "CalibrationSetter",
+          "kind": "request_response",
+          "request_schema": "calibration_request",
+          "response_schema": "calibration_field_response",
+          "transports": [
+            "UDP"
+          ],
+          "application_errors": [
+            1,
+            2,
+            3
+          ],
+          "e2e": "rpc_set04m"
+        }
+      ],
+      "events": [
+        {
+          "event_id": 32769,
+          "name": "VehicleEvent",
+          "schema": "snapshot_event",
+          "group_ids": [
+            1
+          ],
+          "transports": [
+            "UDP"
+          ],
+          "e2e": "event_snapshot04",
+          "pure_event": true
+        },
+        {
+          "event_id": 32770,
+          "name": "CalibrationChanged",
+          "schema": "calibration_field",
+          "group_ids": [
+            1,
+            2
+          ],
+          "transports": [
+            "UDP"
+          ],
+          "e2e": "event_calib04",
+          "pure_event": false
+        }
+      ],
+      "fields": [
+        {
+          "name": "Calibration",
+          "schema": "calibration_field",
+          "getter": 256,
+          "setter": 257,
+          "notifier": 32770,
+          "readable": true,
+          "writable": true,
+          "notifiable": true,
+          "initial_value": {
+            "speed_limit_centi": 9000,
+            "gain_milli": 1000,
+            "label": "baseline"
+          }
+        }
+      ],
+      "event_groups": [
+        {
+          "group_id": 1,
+          "event_ids": [
+            32769,
+            32770
+          ],
+          "ttl_seconds": 3
+        },
+        {
+          "group_id": 2,
+          "event_ids": [
+            32770
+          ],
+          "ttl_seconds": 3
+        }
+      ],
+      "query_handle": "vehicle",
+      "endpoints": [
+        "client_udp",
+        "client_tcp"
+      ],
+      "query": {
+        "service_id": 4660,
+        "instance_id": "ANY",
+        "major": 1,
+        "minor": 1,
+        "minor_match": "EXACT",
+        "transports": [
+          "UDP",
+          "TCP"
+        ]
+      },
+      "auto_require": true,
+      "capabilities": [],
+      "client_timing": {
+        "initial_find_min_ns": 0,
+        "initial_find_max_ns": 0,
+        "repetition_base_ns": 30000000,
+        "repetitions": 2,
+        "request_response_min_ns": 0,
+        "request_response_max_ns": 0,
+        "subscription_retry_delay_ns": 10000000,
+        "subscription_retry_max": 3,
+        "subscription_ttl_seconds": 3
+      }
+    }
+  ]
+}

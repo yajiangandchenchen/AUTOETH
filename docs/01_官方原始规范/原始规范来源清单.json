@@ -1,0 +1,181 @@
+{
+  "官方原件": [
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_CP_ASWS_TransformerGeneral.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/CP/AUTOSAR_CP_ASWS_TransformerGeneral.pdf",
+      "SHA256": "4d90be7f28880d18196ba5161f904c6f70340d6f1b8669d3a140bed6a6a569be",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_CP_SWS_BSWGeneral.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/CP/AUTOSAR_CP_SWS_BSWGeneral.pdf",
+      "SHA256": "4709480090ff9a612d908e8bd46edd502e2e4fa332f7a3bf93801f17cc91872b",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_CP_SWS_CRCLibrary.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/CP/AUTOSAR_CP_SWS_CRCLibrary.pdf",
+      "SHA256": "496f7e2885c308f382aa2b9f9bf3f7b472546731fcde384fae622ace3cc1b92f",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_CP_SWS_CommunicationStackTypes.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/CP/AUTOSAR_CP_SWS_CommunicationStackTypes.pdf",
+      "SHA256": "31f62487c5e27ec1863b3febc79e336ef42eb4a50f2dc52776518d92741a7786",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_CP_SWS_E2ELibrary.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/CP/AUTOSAR_CP_SWS_E2ELibrary.pdf",
+      "SHA256": "1aa4a8e3b18d29b2319ff72f0cb8d37735bafdcc0b0077eb1402d3389ba282f6",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_CP_SWS_E2ETransformer.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/CP/AUTOSAR_CP_SWS_E2ETransformer.pdf",
+      "SHA256": "95740a50f8b3ef94321f535fd7893b115799569f60072b90281d2dd2ad639de5",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_CP_SWS_PDURouter.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/CP/AUTOSAR_CP_SWS_PDURouter.pdf",
+      "SHA256": "3f97e95f6b36c876daeddc1bd90db7d0b24ebd0aa652078349d323ad6664ad6f",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_CP_SWS_PlatformTypes.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/CP/AUTOSAR_CP_SWS_PlatformTypes.pdf",
+      "SHA256": "c0e4b1b97900ebea81d701542e55de05326fe18e245cfb81dbe9c154c493e78b",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_CP_SWS_SOMEIPTransformer.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/CP/AUTOSAR_CP_SWS_SOMEIPTransformer.pdf",
+      "SHA256": "b4deb3cfecf6e38bc5719b31cd9b926b028d816f3a6c86140b8368e2edd29266",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_CP_SWS_SOMEIPTransportProtocol.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/CP/AUTOSAR_CP_SWS_SOMEIPTransportProtocol.pdf",
+      "SHA256": "556fae9e455ec4ccdfc1a759b0d945a634cfc233b05134dd0a754eea1391543e",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_CP_SWS_ServiceDiscovery.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/CP/AUTOSAR_CP_SWS_ServiceDiscovery.pdf",
+      "SHA256": "9b7d3e688417c3f50afb8aa4c3ff16e67e8df235ecd5df0307b0eaafd00dff3c",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_CP_SWS_SocketAdaptor.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/CP/AUTOSAR_CP_SWS_SocketAdaptor.pdf",
+      "SHA256": "2d29b5a1839955fe1f63db47ee1cb8ea8a4fee840db84829cd83eb9947b81cc6",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_CP_SWS_StandardTypes.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/CP/AUTOSAR_CP_SWS_StandardTypes.pdf",
+      "SHA256": "a9f0cc790f8b325485b6b4a2c6f44c89d9f64192274a2a0ca8e827976bc06a81",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_CP_TR_ReleaseOverview.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/CP/AUTOSAR_CP_TR_ReleaseOverview.pdf",
+      "SHA256": "1dbf779fd3c303c1941a30f94606f44f54d5a0b7016e4022dfb76c801597633a",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_FO_PRS_E2EProtocol.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/FO/AUTOSAR_FO_PRS_E2EProtocol.pdf",
+      "SHA256": "ec7175a60c8d57f2e523f87df04910a2ff362481fa5a5f793755cc2302dbb461",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_FO_PRS_SOMEIPProtocol.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/FO/AUTOSAR_FO_PRS_SOMEIPProtocol.pdf",
+      "SHA256": "c08172ca1b7f6be5e7560468cf9810f71a76437bda86dc58a3b3b12418a3317b",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "AUTOSAR_R24-11/AUTOSAR_FO_PRS_SOMEIPServiceDiscoveryProtocol.pdf",
+      "发布方": "AUTOSAR",
+      "版本": "R24-11",
+      "官方来源": "https://www.autosar.org/fileadmin/standards/R24-11/FO/AUTOSAR_FO_PRS_SOMEIPServiceDiscoveryProtocol.pdf",
+      "SHA256": "b32141ff49a4f613b9c6238af50f6a9d9896f2fa96711d707de6ae701db4c596",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "RFC_协议与编码/rfc1035.txt",
+      "发布方": "RFC Editor/IETF",
+      "版本": "rfc1035",
+      "官方来源": "https://www.rfc-editor.org/rfc/rfc1035.txt",
+      "SHA256": "d14ae809fc9b41bbcae26bb38c937c9515808b944f3252b00de9fe0e95f4fdfb",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "RFC_协议与编码/rfc2781.txt",
+      "发布方": "RFC Editor/IETF",
+      "版本": "rfc2781",
+      "官方来源": "https://www.rfc-editor.org/rfc/rfc2781.txt",
+      "SHA256": "e3fed703a962e1e8a1740fef500d1908df3eca2d80de8bad012835f0ae75b502",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "RFC_协议与编码/rfc2782.txt",
+      "发布方": "RFC Editor/IETF",
+      "版本": "rfc2782",
+      "官方来源": "https://www.rfc-editor.org/rfc/rfc2782.txt",
+      "SHA256": "bacc8972b55f30eb47d7bb07662905ba3a3a7cdefb148174d0d9fbbb313735ac",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "RFC_协议与编码/rfc3629.txt",
+      "发布方": "RFC Editor/IETF",
+      "版本": "rfc3629",
+      "官方来源": "https://www.rfc-editor.org/rfc/rfc3629.txt",
+      "SHA256": "a2a3a39457d30420c812f87a38cc2b9194832f6982ef17e619de7d816879d6a6",
+      "版权声明": "原文件内保留"
+    },
+    {
+      "文件": "RFC_协议与编码/rfc6763.txt",
+      "发布方": "RFC Editor/IETF",
+      "版本": "rfc6763",
+      "官方来源": "https://www.rfc-editor.org/rfc/rfc6763.txt",
+      "SHA256": "624208b2b36b91809475c0612a9bd168b34a4e2d4fdca8302ba99ffb43de98e7",
+      "版权声明": "原文件内保留"
+    }
+  ],
+  "课题需求来源": "02_课题需求为本课题准备阶段整理的自定义技术输入，不是外部车企项目SRS。"
+}

@@ -1,0 +1,59 @@
+{
+  "origin": "SUPPLIED_CUSTOMER_SOURCE_INTERFACE_TRANSCRIPTION",
+  "source_pdf": "originals/AUTOSAR/R24-11/AUTOSAR_CP_SWS_E2ELibrary.pdf",
+  "source_sha256": "1aa4a8e3b18d29b2319ff72f0cb8d37735bafdcc0b0077eb1402d3389ba282f6",
+  "conditional_aliases": [
+    {
+      "original_typedef_text": "typedef E2E_P01ProtectStateType E2E_P01SenderStateType;",
+      "condition_original": "If an existing application using E2E Library requires compatibility of interfaces to previous release versions, then the header file E2E.h shall contain following type definitions.",
+      "context_original": "Since AUTOSAR 4.1.1, type names were renamed.",
+      "physical_pages": [
+        30
+      ]
+    },
+    {
+      "original_typedef_text": "typedef E2E_P01CheckStateType E2E_P01ReceiverStateType;",
+      "condition_original": "If an existing application using E2E Library requires compatibility of interfaces to previous release versions, then the header file E2E.h shall contain following type definitions.",
+      "context_original": "Since AUTOSAR 4.1.1, type names were renamed.",
+      "physical_pages": [
+        30
+      ]
+    },
+    {
+      "original_typedef_text": "typedef E2E_P01CheckStatusType E2E_P01ReceiverStatusType;",
+      "condition_original": "If an existing application using E2E Library requires compatibility of interfaces to previous release versions, then the header file E2E.h shall contain following type definitions.",
+      "context_original": "Since AUTOSAR 4.1.1, type names were renamed.",
+      "physical_pages": [
+        30
+      ]
+    },
+    {
+      "original_typedef_text": "typedef E2E_P02ProtectStateType E2E_P02SenderStateType;",
+      "condition_original": "If an existing application using E2E Library requires compatibility of interfaces to previous release versions, then the header file E2E.h shall contain following type definitions.",
+      "context_original": "Since AUTOSAR 4.1.1, type names were renamed.",
+      "physical_pages": [
+        35,
+        36
+      ]
+    },
+    {
+      "original_typedef_text": "typedef E2E_P02CheckStateType E2E_P02ReceiverStateType;",
+      "condition_original": "If an existing application using E2E Library requires compatibility of interfaces to previous release versions, then the header file E2E.h shall contain following type definitions.",
+      "context_original": "Since AUTOSAR 4.1.1, type names were renamed.",
+      "physical_pages": [
+        35,
+        36
+      ]
+    },
+    {
+      "original_typedef_text": "typedef E2E_P02CheckStatusType E2E_P02ReceiverStatusType;",
+      "condition_original": "If an existing application using E2E Library requires compatibility of interfaces to previous release versions, then the header file E2E.h shall contain following type definitions.",
+      "context_original": "Since AUTOSAR 4.1.1, type names were renamed.",
+      "physical_pages": [
+        35,
+        36
+      ]
+    }
+  ],
+  "no_implementation_or_ABI_result": true
+}

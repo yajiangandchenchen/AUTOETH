@@ -1,0 +1,391 @@
+definition_sws	type_name	kind	member_order	original_member_name	original_member_type	array_extent_original	bit_or_byte_unit_when_stated	table_physical_pages	source_comment_original
+SWS_E2E_00018	E2E_P01ConfigType	Structure	1	CounterOffset	uint16		bits	30,31	"Bit offset of Counter in MSB first order. CounterOffset shall be a
+                                                          multiple of 4. In variants 1A, 1B, and 1C, CounterOffset is 8."
+SWS_E2E_00018	E2E_P01ConfigType	Structure	2	CRCOffset	uint16		bits	30,31	"Bit offset of CRC (i.e. since *Data) in MSB first order. The offset shall
+                                             be a multiple of 8. In variants 1A, 1B, and 1C, CRCOffset is 0."
+SWS_E2E_00018	E2E_P01ConfigType	Structure	3	DataID	uint16			30,31	"A unique identifier, for protection against masquerading. There are
+                                         some constraints on the selection of ID values, described in section
+                                                       ""Configuration constraints on Data IDs""."
+SWS_E2E_00018	E2E_P01ConfigType	Structure	4	DataIDNibbleOffset	uint16		bits	30,31	"Bit offset of the low nibble of the high byte of Data ID. This parameter
+                                                                     is used by E2E Library only if DataIDMode = E2E_P01_DATAID_
+                                          NIBBLE (otherwise it is ignored by E2E Library).
+                                                   For DataIDMode different than E2E_P01_DATAID_NIBBLE, Data
+                                                      IDNibbleOffset shall be initialized to 0 (even if it is ignored by E2E
+                                                            Library)."
+SWS_E2E_00018	E2E_P01ConfigType	Structure	5	DataIDMode	E2E_P01DataIDMode			30,31	"Inclusion mode of ID in CRC computation (both bytes, alternating, or
+                                                  low byte only of ID included)."
+SWS_E2E_00018	E2E_P01ConfigType	Structure	6	DataLength	uint16		bits	30,31	Length of data, in bits. The value shall be a multiple of 8.
+SWS_E2E_00018	E2E_P01ConfigType	Structure	7	MaxDeltaCounterInit	uint8			30,31	"Initial maximum allowed gap between two counter values of two
+                                                      consecutively received valid Data. For example, if the receiver gets
+                                               Data with counter 1 and MaxDeltaCounterInit is 1, then at the next
+                                                      reception the receiver can accept Counters with values 2 and 3, but
+                                                     not 4.
+                                               Note that if the receiver does not receive new Data at a consecutive
+                                                      read, then the receiver increments the tolerance by 1."
+SWS_E2E_00018	E2E_P01ConfigType	Structure	8	MaxNoNewOrRepeatedData	uint8			30,31	"The maximum amount of missing or repeated Data which the receiver
+                                              does not expect to exceed under normal communication conditions."
+SWS_E2E_00018	E2E_P01ConfigType	Structure	9	SyncCounterInit	uint8			30,31	"Number of Data required for validating the consistency of the counter
+                                                           that must be received with a valid counter (i.e. counter within the
+                                                    allowed lock-in range) after the detection of an unexpected behavior of
+                                             a received counter."
+SWS_E2E_00020	E2E_P01ProtectStateType	Structure	1	Counter	uint8			32	"Counter to be used for protecting the next Data. The initial value is 0,
+                                                which means that the first Data will have the counter 0. After the
+                                                        protection by the Counter, the Counter is incremented modulo 0xF. The
+                                                    value 0xF is skipped (after 0xE the next is 0x0), as 0xF value
+                                                    represents the error value. The four high bits are always 0."
+SWS_E2E_00021	E2E_P01CheckStateType	Structure	1	LastValidCounter	uint8			33,34	"Counter value most recently received. If no data has been yet
+                                                       received, then the value is 0x0. After each reception, the counter is
+                                                updated with the value received."
+SWS_E2E_00021	E2E_P01CheckStateType	Structure	2	MaxDeltaCounter	uint8			33,34	"MaxDeltaCounter specifies the maximum allowed difference between
+                                                two counter values of consecutively received valid messages."
+SWS_E2E_00021	E2E_P01CheckStateType	Structure	3	WaitForFirstData	boolean			33,34	"If true means that no correct data (with correct Data ID and CRC) has
+                                             been yet received after the receiver initialization or reinitialization."
+SWS_E2E_00021	E2E_P01CheckStateType	Structure	4	NewDataAvailable	boolean			33,34	"Indicates to E2E Library that a new data is available for Library to be
+                                                  checked. This attribute is set by the E2E Library caller, and not by the
+                                       E2E Library."
+SWS_E2E_00021	E2E_P01CheckStateType	Structure	5	LostData	uint8			33,34	"Number of data (messages) lost since reception of last valid one. This
+                                                              attribute is set only if Status equals E2E_P01STATUS_OK or E2E_
+                                       P01STATUS_OKSOMELOST. For other values of Status, the value of
+                                                  LostData is undefined. E2E_P01CheckStatusType Status Result of the
+                                                              verification of the Data, determined by the Check function."
+SWS_E2E_00021	E2E_P01CheckStateType	Structure	6	Status	E2E_P01CheckStatusType			33,34	"Result of the verification of the Data, determined by the Check
+                                                           function."
+SWS_E2E_00021	E2E_P01CheckStateType	Structure	7	SyncCounter	uint8			33,34	"Number of Data required for validating the consistency of the counter
+                                                           that must be received with a valid counter (i.e. counter within the
+                                                    allowed lock-in range) after the detection of an unexpected behavior of
+                                             a received counter."
+SWS_E2E_00021	E2E_P01CheckStateType	Structure	8	NoNewOrRepeatedDataCounter	uint8			33,34	"Amount of consecutive reception cycles in which either (1) there was
+                                             no new data, or (2) when the data was repeated."
+SWS_E2E_00152	E2E_P02ConfigType	Structure	1	DataLength	uint16		bits	36,37	Length of Data, in bits. The value shall be a multiple of 8.
+SWS_E2E_00152	E2E_P02ConfigType	Structure	2	DataIDList	Array of uint8	16		36,37	"An array of appropriately chosen Data IDs for protection against
+                                                 masquerading."
+SWS_E2E_00152	E2E_P02ConfigType	Structure	3	MaxDeltaCounterInit	uint8			36,37	"Initial maximum allowed gap between two counter values of two
+                                                      consecutively received valid Data. For example, if the receiver gets
+                                               Data with counter 1 and MaxDeltaCounterInit is 1, then at the next
+                                                      reception the receiver can accept Counters with values 2 and 3, but
+                                                     not 4.
+                                               Note that if the receiver does not receive new Data at a consecutive
+                                                      read, then the receiver increments the tolerance by 1."
+SWS_E2E_00152	E2E_P02ConfigType	Structure	4	MaxNoNewOrRepeatedData	uint8			36,37	"The maximum amount of missing or repeated Data which the receiver
+                                              does not expect to exceed under normal communication conditions."
+SWS_E2E_00152	E2E_P02ConfigType	Structure	5	SyncCounterInit	uint8			36,37	"Number of Data required for validating the consistency of the counter
+                                                           that must be received with a valid counter (i.e. counter within the
+                                                    allowed lock-in range) after the detection of an unexpected behavior of
+                                             a received counter."
+SWS_E2E_00152	E2E_P02ConfigType	Structure	6	Offset	uint16		bits	36,37	"Offset of the E2E header in the Data[] array in bits.
+                                                                                         It shall be: 0 <= Offset <= DataLength-(2*8)."
+SWS_E2E_00153	E2E_P02ProtectStateType	Structure	1	Counter	uint8			37	"Counter to be used for protecting the Data. The initial value is 0. As
+                                                     the counter is incremented before sending, the first Data will have the
+                                                    counter value 1"
+SWS_E2E_00154	E2E_P02CheckStateType	Structure	1	LastValidCounter	uint8			38	Counter of last valid received message.
+SWS_E2E_00154	E2E_P02CheckStateType	Structure	2	MaxDeltaCounter	uint8			38	"MaxDeltaCounter specifies the maximum allowed difference between
+                                                two counter values of consecutively received valid messages."
+SWS_E2E_00154	E2E_P02CheckStateType	Structure	3	WaitForFirstData	boolean			38	"If true means that no correct data (with correct Data ID and CRC) has
+                                             been yet received after the receiver initialization or reinitialization."
+SWS_E2E_00154	E2E_P02CheckStateType	Structure	4	NewDataAvailable	boolean			38	"Indicates to E2E Library that a new data is available for Library to be
+                                                  checked. This attribute is set by the E2E Library caller, and not by the
+                                       E2E Library."
+SWS_E2E_00154	E2E_P02CheckStateType	Structure	5	LostData	uint8			38	Number of data (messages) lost since reception of last valid one.
+SWS_E2E_00154	E2E_P02CheckStateType	Structure	6	Status	E2E_P02CheckStatusType			38	"Result of the verification of the Data, determined by the Check
+                                                           function."
+SWS_E2E_00154	E2E_P02CheckStateType	Structure	7	SyncCounter	uint8			38	"Number of Data required for validating the consistency of the counter
+                                                           that must be received with a valid counter (i.e. counter within the
+                                                    allowed lock-in range) after the detection of an unexpected behavior of
+                                             a received counter."
+SWS_E2E_00154	E2E_P02CheckStateType	Structure	8	NoNewOrRepeatedDataCounter	uint8			38	"Amount of consecutive reception cycles in which either (1) there was
+                                             no new data, or (2) when the data was repeated."
+SWS_E2E_00334	E2E_P04ConfigType	Structure	1	DataID	uint32			40,41	A system-unique identifier of the Data.
+SWS_E2E_00334	E2E_P04ConfigType	Structure	2	Offset	uint16		bits	40,41	"Bit offset of the first bit of the E2E header from the beginning of the
+                                               Data (bit numbering: bit 0 is the least important). The offset shall be a
+                                                          multiple of 8 and 0 <= Offset <= MaxDataLength-(12*8). Example: If
+                                                        Offset equals 8, then the high byte of the E2E Length (16 bit) is written
+                                                           to Byte 1, the low Byte is written to Byte 2."
+SWS_E2E_00334	E2E_P04ConfigType	Structure	3	MinDataLength	uint16		bits	40,41	"Minimal length of Data, in bits. E2E checks that DataLength is >= Min
+                                                DataLength (see [PRS_E2E_00651])."
+SWS_E2E_00334	E2E_P04ConfigType	Structure	4	MaxDataLength	uint16		bits	40,41	"Maximal length of Data, in bits. E2E checks that DataLength is <= Max
+                                                DataLength (see [PRS_E2E_00651])."
+SWS_E2E_00334	E2E_P04ConfigType	Structure	5	MaxDeltaCounter	uint16			40,41	"Maximum allowed gap between two counter values of two
+                                                      consecutively received valid Data. For example, if the receiver gets
+                                               Data with counter 1 and MaxDeltaCounter is 3, then at the next
+                                                      reception the receiver can accept Counters with values 2, 3 or 4."
+SWS_E2E_00335	E2E_P04ProtectStateType	Structure	1	Counter	uint16			41	"Counter to be used for protecting the next Data. The initial value is 0,
+                                                which means that in the first cycle, Counter is 0. Each time E2E_
+                                                     P04Protect() is called, it increments the counter up to 0xFF’FF. After
+                                                     the maximum value is reached, the next value is 0x0. The overflow is
+                                                     not reported to the caller."
+SWS_E2E_00336	E2E_P04CheckStateType	Structure	1	Status	E2E_P04CheckStatusType			42	"Result of the verification of the Data in this cycle, determined by the
+                                            Check function."
+SWS_E2E_00336	E2E_P04CheckStateType	Structure	2	Counter	uint16			42	Counter of the data in previous cycle.
+SWS_E2E_91021	E2E_P04mConfigType	Structure	1	DataID	uint32			43,44	A system-unique identifier of the Data.
+SWS_E2E_91021	E2E_P04mConfigType	Structure	2	Offset	uint16		bits	43,44	"Bit offset of the first bit of the E2E header from the beginning of the
+                                               Data (bit numbering: bit 0 is the least important). The offset shall be a
+                                                          multiple of 8 and 0 <= Offset <= MaxDataLength-(12*8). Example: If
+                                                        Offset equals 8, then the high byte of the E2E Length (16 bit) is written
+                                                           to Byte 1, the low Byte is written to Byte 2."
+SWS_E2E_91021	E2E_P04mConfigType	Structure	3	MinDataLength	uint16		bits	43,44	"Minimal length of Data, in bits. E2E checks that DataLength is >= Min
+                                                DataLength (see [PRS_E2E_00852])."
+SWS_E2E_91021	E2E_P04mConfigType	Structure	4	MaxDataLength	uint16		bits	43,44	"Maximal length of Data, in bits. E2E checks that DataLength is <= Max
+                                                DataLength (see [PRS_E2E_00852])."
+SWS_E2E_91021	E2E_P04mConfigType	Structure	5	MaxDeltaCounter	uint16			43,44	"Maximum allowed gap between two counter values of two
+                                                      consecutively received valid Data. For example, if the receiver gets
+                                               Data with counter 1 and MaxDeltaCounter is 3, then at the next
+                                                      reception the receiver can accept Counters with values 2, 3 or 4."
+SWS_E2E_91020	E2E_P04mProtectStateType	Structure	1	Counter	uint16			44	"Counter to be used for protecting the next Data. The initial value is 0,
+                                                which means that in the first cycle, Counter is 0. Each time E2E_P04m
+                                                          Protect() is called, it increments the counter up to 0xFF’FF. After the
+                                        maximum value is reached, the next value is 0x0. The overflow is not
+                                                     reported to the caller."
+SWS_E2E_91019	E2E_P04mCheckStateType	Structure	1	Status	E2E_P04mCheckStatusType			45	"Result of the verification of the Data in this cycle, determined by the
+                                            Check function."
+SWS_E2E_91019	E2E_P04mCheckStateType	Structure	2	Counter	uint16			45	Counter of the data in previous cycle.
+SWS_E2E_00437	E2E_P05ConfigType	Structure	1	Offset	uint16		bits	47	"Bit offset of the first bit of the E2E header from the beginning of the
+                                               Data (bit numbering: bit 0 is the least important). The offset shall be a
+                                                          multiple of 8 and 0 <= Offset <= DataLength-(3*8). Example: If Offset
+                                                  equals 8, then the low byte of the E2E Crc (16 bit) is written to Byte 1,
+                                                     the high Byte is written to Byte 2."
+SWS_E2E_00437	E2E_P05ConfigType	Structure	2	DataLength	uint16		bits	47	"Length of data, in bits
+                                           The Length shall be <= 4096*8 (4KB) and shall be >= 3*8"
+SWS_E2E_00437	E2E_P05ConfigType	Structure	3	DataID	uint16			47	A system-unique identifier of the Data
+SWS_E2E_00437	E2E_P05ConfigType	Structure	4	MaxDeltaCounter	uint8			47	"Maximum allowed gap between two counter values of two
+                                                      consecutively received valid Data. For example, if the receiver gets
+                                               Data with counter 1 and MaxDeltaCounter is 3, then at the next
+                                                      reception the receiver can accept Counters with values 2, 3 or 4."
+SWS_E2E_00438	E2E_P05ProtectStateType	Structure	1	Counter	uint8			48	"Counter to be used for protecting the next Data. The initial value is 0,
+                                                which means that in the first cycle, Counter is 0. Each time E2E_
+                                                     P05Protect() is called, it increments the counter up to 0xFF."
+SWS_E2E_00439	E2E_P05CheckStateType	Structure	1	Status	E2E_P05CheckStatusType			48,49	"Result of the verification of the Data in this cycle, determined by the
+                                            Check function."
+SWS_E2E_00439	E2E_P05CheckStateType	Structure	2	Counter	uint8			48,49	Counter of the data in previous cycle.
+SWS_E2E_00441	E2E_P06ConfigType	Structure	1	Offset	uint16		bits	50	"Bit offset of the first bit of the E2E header from the beginning of the
+                                               Data (bit numbering: bit 0 is the least important). The offset shall be a
+                                                          multiple of 8 and 0 <= Offset <= MaxDataLength-(5*8). Example: If
+                                                        Offset equals 8, then the high byte of the E2E Crc (16 bit) is written to
+                                                  Byte 1, the low Byte is written to Byte 2."
+SWS_E2E_00441	E2E_P06ConfigType	Structure	2	MinDataLength	uint16		bits	50	"Minimal length of Data, in bits. E2E checks that DataLength is >= Min
+                                                DataLength (see [PRS_E2E_00657])."
+SWS_E2E_00441	E2E_P06ConfigType	Structure	3	MaxDataLength	uint16		bits	50	"Maximal length of Data, in bits. E2E checks that DataLength is <= Max
+                                                DataLength (see [PRS_E2E_00657])."
+SWS_E2E_00441	E2E_P06ConfigType	Structure	4	DataID	uint16			50	A system-unique identifier of the Data
+SWS_E2E_00441	E2E_P06ConfigType	Structure	5	MaxDeltaCounter	uint8			50	"Maximum allowed gap between two counter values of two
+                                                      consecutively received valid Data. For example, if the receiver gets
+                                               Data with counter 1 and MaxDeltaCounter is 3, then at the next
+                                                      reception the receiver can accept Counters with values 2, 3 or 4."
+SWS_E2E_00443	E2E_P06ProtectStateType	Structure	1	Counter	uint8			51	"Counter to be used for protecting the next Data. The initial value is 0,
+                                                which means that in the first cycle, Counter is 0. Each time E2E_
+                                                     P06Protect() is called, it increments the counter up to 0xFF. After the
+                                        maximum value is reached, the next value is 0x0. The overflow is not
+                                                     reported to the caller."
+SWS_E2E_00444	E2E_P06CheckStateType	Structure	1	Status	E2E_P06CheckStatusType			52	"Result of the verification of the Data in this cycle, determined by the
+                                            Check function."
+SWS_E2E_00444	E2E_P06CheckStateType	Structure	2	Counter	uint8			52	Counter of the data in previous cycle.
+SWS_E2E_00544	E2E_P07ConfigType	Structure	1	DataID	uint32			53,54	A system-unique identifier of the Data.
+SWS_E2E_00544	E2E_P07ConfigType	Structure	2	Offset	uint32		bits	53,54	"Bit offset of the first bit of the E2E header from the beginning of the
+                                               Data (bit numbering: bit 0 is the least important). The offset shall be a
+                                                          multiple of 8 and 0 <= Offset <= MaxDataLength-(20*8). Example: If
+                                                        Offset equals 8, then the first byte of the E2E Length (32 bit) is written
+                                                           to byte 1, the next byte is written to byte 2 and so on."
+SWS_E2E_00544	E2E_P07ConfigType	Structure	3	MinDataLength	uint32		bits	53,54	"Minimal length of Data, in bits. E2E checks that DataLength is >= Min
+                                                DataLength (see [PRS_E2E_00660])."
+SWS_E2E_00544	E2E_P07ConfigType	Structure	4	MaxDataLength	uint32		bits	53,54	"Maximal length of Data, in bits. E2E checks that DataLength is <= Max
+                                                DataLength (see [PRS_E2E_00660])."
+SWS_E2E_00544	E2E_P07ConfigType	Structure	5	MaxDeltaCounter	uint32			53,54	"Maximum allowed gap between two counter values of two
+                                                      consecutively received valid Data. For example, if the receiver gets
+                                               Data with counter 1 and MaxDeltaCounter is 3, then at the next
+                                                      reception the receiver can accept Counters with values 2, 3 or 4."
+SWS_E2E_00545	E2E_P07ProtectStateType	Structure	1	Counter	uint32			54	"Counter to be used for protecting the next Data. The initial value is 0,
+                                                which means that in the first cycle, Counter is 0. Each time E2E_
+                                                     P07Protect() is called, it increments the counter up to 0xFF’FF’FF’FF."
+SWS_E2E_00542	E2E_P07CheckStateType	Structure	1	Status	E2E_P07CheckStatusType			55	"Result of the verification of the Data in this cycle, determined by the
+                                            Check function."
+SWS_E2E_00542	E2E_P07CheckStateType	Structure	2	Counter	uint32			55	Counter of the data in previous cycle.
+SWS_E2E_91010	E2E_P07mConfigType	Structure	1	DataID	uint32			56,57	A system-unique identifier of the Data.
+SWS_E2E_91010	E2E_P07mConfigType	Structure	2	Offset	uint32		bits	56,57	"Bit offset of the first bit of the E2E header from the beginning of the
+                                               Data (bit numbering: bit 0 is the least important). The offset shall be a
+                                                          multiple of 8 and 0 <= Offset <= MaxDataLength-(24*8). Example: If
+                                                        Offset equals 8, then the high byte of the E2E Length (16 bit) is written
+                                                           to Byte 1, the low Byte is written to Byte 2."
+SWS_E2E_91010	E2E_P07mConfigType	Structure	3	MinDataLength	uint32		bits	56,57	"Minimal length of Data, in bits. E2E checks that DataLength is >= Min
+                                                DataLength (see [PRS_E2E_00851])."
+SWS_E2E_91010	E2E_P07mConfigType	Structure	4	MaxDataLength	uint32		bits	56,57	"Maximal length of Data, in bits. E2E checks that DataLength is <= Max
+                                                DataLength (see [PRS_E2E_00851])."
+SWS_E2E_91010	E2E_P07mConfigType	Structure	5	MaxDeltaCounter	uint32			56,57	"Maximum allowed gap between two counter values of two
+                                                      consecutively received valid Data. For example, if the receiver gets
+                                               Data with counter 1 and MaxDeltaCounter is 3, then at the next
+                                                      reception the receiver can accept Counters with values 2, 3 or 4."
+SWS_E2E_91011	E2E_P07mProtectStateType	Structure	1	Counter	uint32			57,58	"Counter to be used for protecting the next Data. The initial value is 0,
+                                                which means that in the first cycle, Counter is 0. Each time E2E_P07m
+                                                          Protect() is called, it increments the counter up to 0xFF’FF’FF’FF. After
+                                                     the maximum value is reached, the next value is 0x0. The overflow is
+                                                     not reported to the caller."
+SWS_E2E_91008	E2E_P07mCheckStateType	Structure	1	Status	E2E_P07mCheckStatusType			58	"Result of the verification of the Data in this cycle, determined by the
+                                            Check function."
+SWS_E2E_91008	E2E_P07mCheckStateType	Structure	2	Counter	uint32			58	Counter of the data in previous cycle.
+SWS_E2E_91033	E2E_P08ConfigType	Structure	1	DataID	uint32			60	A system-unique identifier of the Data.
+SWS_E2E_91033	E2E_P08ConfigType	Structure	2	Offset	uint32		bits	60	"Bit offset of the first bit of the E2E header from the beginning of the
+                                               Data (bit numbering: bit 0 is the least important). The offset shall be a
+                                                          multiple of 8 and 0 <= Offset <= MaxDataLength-(16*8). Example: If
+                                                        Offset equals 8, then the high byte of the E2E Length (32 bit) is written
+                                                           to byte 1, the next byte is written to byte 2 and so on."
+SWS_E2E_91033	E2E_P08ConfigType	Structure	3	MinDataLength	uint32		bits	60	"Minimal length of Data, in bits. E2E checks that DataLength is >= Min
+                                                DataLength (see [PRS_E2E_00706])."
+SWS_E2E_91033	E2E_P08ConfigType	Structure	4	MaxDataLength	uint32		bits	60	"Maximal length of Data, in bits. E2E checks that DataLength is <= Max
+                                                DataLength (see [PRS_E2E_00706])."
+SWS_E2E_91033	E2E_P08ConfigType	Structure	5	MaxDeltaCounter	uint32			60	"Maximum allowed gap between two counter values of two
+                                                      consecutively received valid Data. For example, if the receiver gets
+                                               Data with counter 1 and MaxDeltaCounter is 3, then at the next
+                                                      reception the receiver can accept Counters with values 2, 3 or 4."
+SWS_E2E_91042	E2E_P08ProtectStateType	Structure	1	Counter	uint32			61	"Counter to be used for protecting the next Data. The initial value is 0,
+                                                which means that in the first cycle, Counter is 0. Each time E2E_
+                                                     P08Protect() is called, it increments the counter up to 0xFF’FF’FF’FF."
+SWS_E2E_91034	E2E_P08CheckStateType	Structure	1	Status	E2E_P08CheckStatusType			61,62	"Result of the verification of the Data in this cycle, determined by the
+                                            Check function."
+SWS_E2E_91034	E2E_P08CheckStateType	Structure	2	Counter	uint32			61,62	Counter of the data in previous cycle.
+SWS_E2E_91073	E2E_P08mConfigType	Structure	1	DataID	uint32			63	A system-unique identifier of the Data.
+SWS_E2E_91073	E2E_P08mConfigType	Structure	2	MinDataLength	uint32		bits	63	"Minimal length of Data, in bits. E2E checks that DataLength is >= Min
+                                                DataLength (see [PRS_E2E_01154])."
+SWS_E2E_91073	E2E_P08mConfigType	Structure	3	MaxDataLength	uint32		bits	63	"Maximal length of Data, in bits. E2E checks that DataLength is <= Max
+                                                DataLength (see [PRS_E2E_01154])."
+SWS_E2E_91073	E2E_P08mConfigType	Structure	4	MaxDeltaCounter	uint32			63	"Maximum allowed gap between two counter values of two
+                                                      consecutively received valid Data. For example, if the receiver gets
+                                               Data with counter 1 and MaxDeltaCounter is 3, then at the next
+                                                      reception the receiver can accept Counters with values 2, 3 or 4."
+SWS_E2E_91073	E2E_P08mConfigType	Structure	5	Offset	uint32		bits	63	"Bit offset of the first bit of the E2E header from the beginning of the
+                                               Data (bit numbering: bit 0 is the least important). The offset shall be a
+                                                          multiple of 8 and 0 <= Offset <= MaxDataLength-(16*8). Example: If
+                                                        Offset equals 8, then the high byte of the E2E Length (32 bit) is written
+                                                           to byte 1, the next byte is written to byte 2 and so on."
+SWS_E2E_91074	E2E_P08mProtectStateType	Structure	1	Counter	uint32			64	"Counter to be used for protecting the next Data. The initial value is 0,
+                                                which means that in the first cycle, Counter is 0. Each time E2E_
+                                                  P08mProtect() is called, it increments the counter up to 0xFF’FF’FF’FF."
+SWS_E2E_91075	E2E_P08mCheckStateType	Structure	1	Status	E2E_P08mCheckStatusType			65	"Result of the verification of the Data in this cycle, determined by the
+                                            Check function."
+SWS_E2E_91075	E2E_P08mCheckStateType	Structure	2	Counter	uint32			65	Counter of the data in previous cycle.
+SWS_E2E_00565	E2E_P11ConfigType	Structure	1	DataLength	uint16		bits	66,67	Length of data, in bits. The value shall be a multiple of 8.
+SWS_E2E_00565	E2E_P11ConfigType	Structure	2	DataID	uint16			66,67	"A unique identifier, for protection against masquerading. There are
+                                         some constraints on the selection of ID values, described in section
+                                                       ""Configuration constraints on Data IDs""."
+SWS_E2E_00565	E2E_P11ConfigType	Structure	3	MaxDeltaCounter	uint8			66,67	"Maximum allowed gap between two counter values of two
+                                                      consecutively received valid Data. For example, if the receiver gets
+                                               Data with counter 1 and MaxDeltaCounter is 3, then at the next
+                                                      reception the receiver can accept Counters with values 2, 3 or 4."
+SWS_E2E_00565	E2E_P11ConfigType	Structure	4	DataIDMode	E2E_P11DataIDMode			66,67	–
+SWS_E2E_00565	E2E_P11ConfigType	Structure	5	CRCOffset	uint16		bits	66,67	"Bit offset of CRC (i.e. since *Data) in MSB first order. In variants 1A
+                                             and 1B, CRCOffset is 0. The offset shall be a multiple of 8."
+SWS_E2E_00565	E2E_P11ConfigType	Structure	6	CounterOffset	uint16		bits	66,67	"Bit offset of Counter in MSB first order. In variants 1A and 1B, Counter
+                                                        Offset is 8. The offset shall be a multiple of 4."
+SWS_E2E_00565	E2E_P11ConfigType	Structure	7	DataIDNibbleOffset	uint16		bits	66,67	"Bit offset of the low nibble of the high byte of Data ID. This parameter
+                                                                     is used by E2E Library only if DataIDMode = E2E_P11_DATAID_
+                                          NIBBLE (otherwise it is ignored by E2E Library).
+                                                   For DataIDMode different than E2E_P11_DATAID_NIBBLE, Data
+                                                      IDNibbleOffset shall be initialized to 0 (even if it is ignored by E2E
+                                                            Library)."
+SWS_E2E_00567	E2E_P11ProtectStateType	Structure	1	Counter	uint8			68	"Counter to be used for protecting the next Data. The initial value is 0,
+                                                which means that in the first cycle, Counter is 0. Each time E2E_
+                                                     P11Protect() is called, it increments the counter up to 0x0E."
+SWS_E2E_00563	E2E_P11CheckStateType	Structure	1	Status	E2E_P11CheckStatusType			69	"Result of the verification of the Data in this cycle, determined by the
+                                            Check function."
+SWS_E2E_00563	E2E_P11CheckStateType	Structure	2	Counter	uint8			69	Counter of the data in previous cycle.
+SWS_E2E_00571	E2E_P22ConfigType	Structure	1	MinDataLength	uint16		bits	70,71	"Length of Data, in bits. The value shall be a multiple of 8 and MinData
+                                                 Length >= Offset +(2*8). The value shall be the same as MaxData
+                                                    Length."
+SWS_E2E_00571	E2E_P22ConfigType	Structure	2	MaxDataLength	uint16		bits	70,71	Length of Data, in bits. The value shall be the same as MinDataLength.
+SWS_E2E_00571	E2E_P22ConfigType	Structure	3	DataIDList	Array of uint8	16		70,71	"An array of appropriately chosen Data IDs for protection against
+                                                 masquerading."
+SWS_E2E_00571	E2E_P22ConfigType	Structure	4	MaxDeltaCounter	uint8			70,71	"Initial maximum allowed gap between two counter values of two
+                                                      consecutively received valid Data. For example, if the receiver gets
+                                               Data with counter 1 and MaxDeltaCounterInit is 1, then at the next
+                                                      reception the receiver can accept Counters with values 2 and 3, but
+                                                     not 4.
+                                               Note that if the receiver does not receive new Data at a consecutive
+                                                      read, then the receiver increments the tolerance by 1."
+SWS_E2E_00571	E2E_P22ConfigType	Structure	5	Offset	uint16		bits	70,71	"Offset of the E2E header in the Data[] array in bits.
+                                                                                         It shall be: 0 <= Offset <= DataLength-(2*8)."
+SWS_E2E_00570	E2E_P22ProtectStateType	Structure	1	Counter	uint8			71	"Counter to be used for protecting the Data. The initial value is 0, which
+                                         means that the first Data will have the counter 0. After the protection
+                                                by the counter, the counter is incremented modulo 16."
+SWS_E2E_00568	E2E_P22CheckStateType	Structure	1	Counter	uint8			72	Counter of last valid received message.
+SWS_E2E_00568	E2E_P22CheckStateType	Structure	2	Status	E2E_P22CheckStatusType			72	"Result of the verification of the Data, determined by the Check
+                                                           function."
+SWS_E2E_91023	E2E_P44ConfigType	Structure	1	DataID	uint32			74	A system-unique identifier of the Data.
+SWS_E2E_91023	E2E_P44ConfigType	Structure	2	Offset	uint32		bits	74	"Bit offset of the first bit of the E2E header from the beginning of the
+                                               Data (bit numbering: bit 0 is the least important). The offset shall be a
+                                                          multiple of 8 and 0 <= Offset <= MaxDataLength-(12*8). Example: If
+                                                        Offset equals 8, then the high byte of the E2E Length (16 bit) is written
+                                                           to Byte 1, the low Byte is written to Byte 2."
+SWS_E2E_91023	E2E_P44ConfigType	Structure	3	MinDataLength	uint32		bits	74	"Minimal length of Data, in bits. E2E checks that DataLength is >= Min
+                                                DataLength (see [PRS_E2E_00735])."
+SWS_E2E_91023	E2E_P44ConfigType	Structure	4	MaxDataLength	uint32		bits	74	"Maximal length of Data, in bits. E2E checks that DataLength is <= Max
+                                                DataLength (see [PRS_E2E_00735])."
+SWS_E2E_91023	E2E_P44ConfigType	Structure	5	MaxDeltaCounter	uint16			74	"Maximum allowed gap between two counter values of two
+                                                      consecutively received valid Data. For example, if the receiver gets
+                                               Data with counter 1 and MaxDeltaCounter is 3, then at the next
+                                                      reception the receiver can accept Counters with values 2, 3 or 4"
+SWS_E2E_91024	E2E_P44ProtectStateType	Structure	1	Counter	uint16			75	"Counter to be used for protecting the next Data. The initial value is 0,
+                                                which means that in the first cycle, Counter is 0. Each time E2E_
+                                                     P44Protect() is called, it increments the counter up to 0xFF’FF. After
+                                                     the maximum value is reached, the next value is 0x0. The overflow is
+                                                     not reported to the caller."
+SWS_E2E_91025	E2E_P44CheckStateType	Structure	1	Status	E2E_P44CheckStatusType			75,76	"Result of the verification of the Data in this cycle, determined by the
+                                            Check function."
+SWS_E2E_91025	E2E_P44CheckStateType	Structure	2	Counter	uint16			75,76	Counter of the data in previous cycle.
+SWS_E2E_91077	E2E_P44mConfigType	Structure	1	DataID	uint32			77	A system-unique identifier of the Data.
+SWS_E2E_91077	E2E_P44mConfigType	Structure	2	MinDataLength	uint32		bits	77	"Minimal length of Data, in bits. E2E checks that DataLength is >= Min
+                                                DataLength (see [PRS_E2E_01202])."
+SWS_E2E_91077	E2E_P44mConfigType	Structure	3	MaxDataLength	uint32		bits	77	"Maximal length of Data, in bits. E2E checks that DataLength is <= Max
+                                                DataLength (see [PRS_E2E_01202])."
+SWS_E2E_91077	E2E_P44mConfigType	Structure	4	MaxDeltaCounter	uint16			77	"Maximum allowed gap between two counter values of two
+                                                      consecutively received valid Data. For example, if the receiver gets
+                                               Data with counter 1 and MaxDeltaCounter is 3, then at the next
+                                                      reception the receiver can accept Counters with values 2, 3 or 4."
+SWS_E2E_91077	E2E_P44mConfigType	Structure	5	Offset	uint32		bits	77	"Bit offset of the first bit of the E2E header from the beginning of the
+                                               Data (bit numbering: bit 0 is the least important). The offset shall be a
+                                                          multiple of 8 and 0 <= Offset <= MaxDataLength-(12*8). Example: If
+                                                        Offset equals 8, then the high byte of the E2E Length (16 bit) is written
+                                                           to Byte 1, the low Byte is written to Byte 2."
+SWS_E2E_91078	E2E_P44mProtectStateType	Structure	1	Counter	uint16			78	"Counter to be used for protecting the next Data. The initial value is 0,
+                                                which means that in the first cycle, Counter is 0. Each time E2E_P44m
+                                                          Protect() is called, it increments the counter up to 0xFF’FF. After the
+                                        maximum value is reached, the next value is 0x0. The overflow is not
+                                                     reported to the caller."
+SWS_E2E_91079	E2E_P44mCheckStateType	Structure	1	Status	E2E_P44mCheckStatusType			79	"Result of the verification of the Data in this cycle, determined by the
+                                            Check function."
+SWS_E2E_91079	E2E_P44mCheckStateType	Structure	2	Counter	uint16			79	Counter of the data in previous cycle.
+SWS_E2E_00342	E2E_SMConfigType	Structure	1	WindowSizeValid	uint8			84,85	"Size of the monitoring window for the state machine during state
+                                                 VALID."
+SWS_E2E_00342	E2E_SMConfigType	Structure	2	MinOkStateInit	uint8			84,85	"Minimal number of checks in which ProfileStatus equal to E2E_P_OK
+                                          was determined within the last WindowSize checks (for the state E2E_
+                                              SM_INIT) required to change to state E2E_SM_VALID."
+SWS_E2E_00342	E2E_SMConfigType	Structure	3	MaxErrorStateInit	uint8			84,85	"Maximal number of checks in which ProfileStatus equal to E2E_P_
+                                  ERROR was determined, within the last WindowSize checks (for the
+                                                         state E2E_SM_INIT)."
+SWS_E2E_00342	E2E_SMConfigType	Structure	4	MinOkStateValid	uint8			84,85	"Minimal number of checks in which ProfileStatus equal to E2E_P_OK
+                                          was determined within the last WindowSize checks (for the state E2E_
+                                           SM_VALID) required to keep in state E2E_SM_VALID."
+SWS_E2E_00342	E2E_SMConfigType	Structure	5	MaxErrorStateValid	uint8			84,85	"Maximal number of checks in which ProfileStatus equal to E2E_P_
+                                  ERROR was determined, within the last WindowSize checks (for the
+                                                         state E2E_SM_VALID)."
+SWS_E2E_00342	E2E_SMConfigType	Structure	6	MinOkStateInvalid	uint8			84,85	"Minimum number of checks in which ProfileStatus equal to E2E_P_OK
+                                          was determined within the last WindowSize checks (for the state E2E_
+                                            SM_INVALID) required to change to state E2E_SM_VALID."
+SWS_E2E_00342	E2E_SMConfigType	Structure	7	MaxErrorStateInvalid	uint8			84,85	"Maximal number of checks in which ProfileStatus equal to E2E_P_
+                                  ERROR was determined, within the last WindowSize checks (for the
+                                                         state E2E_SM_INVALID)."
+SWS_E2E_00342	E2E_SMConfigType	Structure	8	WindowSizeInit	uint8			84,85	Size of the monitoring windows for the state machine during state INIT.
+SWS_E2E_00342	E2E_SMConfigType	Structure	9	WindowSizeInvalid	uint8			84,85	"Size of the monitoring window for the state machine during state
+                                                 INVALID."
+SWS_E2E_00342	E2E_SMConfigType	Structure	10	ClearToInvalid	boolean			84,85	Clear monitoring window data on transition to state INVALID.
+SWS_E2E_00342	E2E_SMConfigType	Structure	11	transitToInvalidExtended	boolean			84,85	Restrict/allow tranistion from states INIT/NODATA to INVALID state.
+SWS_E2E_00343	E2E_SMCheckStateType	Structure	1	ProfileStatusWindow	uint8*			85,86	"Pointer to an array, in which the ProfileStatus-es of the last
+                                               E2E-checks are stored.
+                                           The array size shall be WindowSize"
+SWS_E2E_00343	E2E_SMCheckStateType	Structure	2	WindowTopIndex	uint8			85,86	index in the array, at which the next ProfileStatus is to be written.
+SWS_E2E_00343	E2E_SMCheckStateType	Structure	3	OkCount	uint8			85,86	"Count of checks in which ProfileStatus equal to E2E_P_OK was
+                                                   determined, within the last WindowSize checks."
+SWS_E2E_00343	E2E_SMCheckStateType	Structure	4	ErrorCount	uint8			85,86	"Count of checks in which ProfileStatus equal to E2E_P_ERROR was
+                                                   determined, within the last WindowSize checks."
+SWS_E2E_00343	E2E_SMCheckStateType	Structure	5	SMState	E2E_SMStateType			85,86	"The current state in the state machine. The value is not explicitly used
+                                                                in the pseudocode of the state machine, because it is expressed in
+                                   UML as UML states."
+SWS_E2E_00343	E2E_SMCheckStateType	Structure	6	NoDataInitCount	uint8			85,86	"Count of checks in the state E2E_SM_NODATA or E2E_SM_INIT
+                                                       without transitioning to the state E2E_SM_VALID. Length of this
+                                                    counter is less or equal than WindowSizeValid."

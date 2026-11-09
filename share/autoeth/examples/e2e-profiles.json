@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "channels": [
+    {
+      "channel_id": "p11",
+      "profile": "11",
+      "configuration_surface": "SourceC",
+      "config": {
+        "DataLength": 64,
+        "DataID": 291,
+        "MaxDeltaCounter": 1,
+        "DataIDMode": 0,
+        "CRCOffset": 0,
+        "CounterOffset": 8,
+        "DataIDNibbleOffset": 0
+      }
+    },
+    {
+      "channel_id": "p22",
+      "profile": "22",
+      "configuration_surface": "SourceC",
+      "config": {
+        "MinDataLength": 64,
+        "MaxDataLength": 64,
+        "DataIDList": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "MaxDeltaCounter": 1,
+        "Offset": 0
+      }
+    },
+    {
+      "channel_id": "p44",
+      "profile": "44",
+      "configuration_surface": "SourceC",
+      "config": {
+        "DataID": 168496141,
+        "Offset": 0,
+        "MinDataLength": 96,
+        "MaxDataLength": 524280,
+        "MaxDeltaCounter": 1
+      }
+    },
+    {
+      "channel_id": "p01",
+      "profile": "01",
+      "configuration_surface": "SourceC",
+      "config": {
+        "CounterOffset": 8,
+        "CRCOffset": 0,
+        "DataID": 291,
+        "DataIDNibbleOffset": 0,
+        "DataIDMode": 0,
+        "DataLength": 64,
+        "MaxDeltaCounterInit": 1,
+        "MaxNoNewOrRepeatedData": 2,
+        "SyncCounterInit": 2
+      },
+      "legacy_compatibility": true,
+      "behavior": "R4_2"
+    },
+    {
+      "channel_id": "p02",
+      "profile": "02",
+      "configuration_surface": "SourceC",
+      "config": {
+        "DataLength": 64,
+        "DataIDList": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "MaxDeltaCounterInit": 1,
+        "MaxNoNewOrRepeatedData": 2,
+        "SyncCounterInit": 2,
+        "Offset": 0
+      },
+      "legacy_compatibility": true,
+      "behavior": "R4_2"
+    },
+    {
+      "channel_id": "p04",
+      "profile": "04",
+      "configuration_surface": "SourceC",
+      "config": {
+        "DataID": 168496141,
+        "Offset": 0,
+        "MinDataLength": 96,
+        "MaxDataLength": 32768,
+        "MaxDeltaCounter": 1
+      }
+    },
+    {
+      "channel_id": "p04m",
+      "profile": "04m",
+      "configuration_surface": "SourceC",
+      "config": {
+        "DataID": 168496141,
+        "Offset": 0,
+        "MinDataLength": 128,
+        "MaxDataLength": 32768,
+        "MaxDeltaCounter": 1
+      },
+      "source_id": 1193046
+    },
+    {
+      "channel_id": "p05",
+      "profile": "05",
+      "configuration_surface": "SourceC",
+      "config": {
+        "Offset": 0,
+        "DataLength": 64,
+        "DataID": 291,
+        "MaxDeltaCounter": 1
+      }
+    },
+    {
+      "channel_id": "p06",
+      "profile": "06",
+      "configuration_surface": "SourceC",
+      "config": {
+        "Offset": 0,
+        "MinDataLength": 40,
+        "MaxDataLength": 32768,
+        "DataID": 291,
+        "MaxDeltaCounter": 1
+      }
+    },
+    {
+      "channel_id": "p07",
+      "profile": "07",
+      "configuration_surface": "SourceC",
+      "config": {
+        "DataID": 168496141,
+        "Offset": 0,
+        "MinDataLength": 160,
+        "MaxDataLength": 33554432,
+        "MaxDeltaCounter": 1
+      }
+    },
+    {
+      "channel_id": "p07m",
+      "profile": "07m",
+      "configuration_surface": "SourceC",
+      "config": {
+        "DataID": 168496141,
+        "Offset": 0,
+        "MinDataLength": 192,
+        "MaxDataLength": 33554432,
+        "MaxDeltaCounter": 1
+      },
+      "source_id": 1193046
+    },
+    {
+      "channel_id": "p08",
+      "profile": "08",
+      "configuration_surface": "NativeWide",
+      "config": {
+        "data_id": 168496141,
+        "max_data_length_bits": 4294967296,
+        "max_delta_counter": 1,
+        "min_data_length_bits": 128,
+        "offset_bits": 0
+      }
+    },
+    {
+      "channel_id": "p08m",
+      "profile": "08m",
+      "configuration_surface": "NativeWide",
+      "config": {
+        "data_id": 168496141,
+        "max_data_length_bits": 4294967296,
+        "max_delta_counter": 1,
+        "min_data_length_bits": 160,
+        "offset_bits": 0
+      },
+      "source_id": 1193046
+    },
+    {
+      "channel_id": "p44m",
+      "profile": "44m",
+      "configuration_surface": "SourceC",
+      "config": {
+        "DataID": 168496141,
+        "MinDataLength": 128,
+        "MaxDataLength": 524280,
+        "MaxDeltaCounter": 1,
+        "Offset": 0
+      },
+      "source_id": 1193046
+    }
+  ]
+}

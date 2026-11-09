@@ -1,0 +1,541 @@
+definition_sws	type_name	row_order	original_name_cell	faithful_joined_name	explicit_original_value	reserved_row	physical_page	source_comment_original
+SWS_E2E_00200	E2E_P01DataIDMode	1	E2E_P01_DATAID_BOTH	E2E_P01_DATAID_BOTH	0	False	32	"Two bytes are included in the CRC (double ID
+configuration) This is used in E2E variant 1A."
+SWS_E2E_00200	E2E_P01DataIDMode	2	E2E_P01_DATAID_ALT	E2E_P01_DATAID_ALT	1	False	32	"One of the two bytes byte is included,
+alternating high and low byte, depending on
+parity of the counter (alternating ID
+configuration). For an even counter, the low
+byte is included. For an odd counter, the high
+byte is included. This is used in E2E variant
+1B."
+SWS_E2E_00200	E2E_P01DataIDMode	3	E2E_P01_DATAID_LOW	E2E_P01_DATAID_LOW	2	False	32	"Only the low byte is included, the high byte is
+never used. This is applicable if the IDs in a
+particular system are 8 bits."
+SWS_E2E_00200	E2E_P01DataIDMode	4	E2E_P01_DATAID_NIBBLE	E2E_P01_DATAID_NIBBLE	3	False	32	"The low byte is included in the implicit CRC
+calculation, the low nibble of the high byte is
+transmitted along with the data (i.e. it is
+explicitly included), the high nibble of the high
+byte is not used. This is applicable for the IDs
+up to 12 bits. This is used in E2E variant 1C."
+SWS_E2E_00022	E2E_P01CheckStatusType	1	E2E_P01STATUS_OK	E2E_P01STATUS_OK	0x00	False	34	"OK: The new data has been received
+according to communication medium, the
+CRC is correct, the Counter is incremented
+by 1 with respect to the most recent Data
+received with Status _INITIAL, _OK, or _
+OKSOMELOST. This means that no Data has
+been lost since the last correct data
+reception."
+SWS_E2E_00022	E2E_P01CheckStatusType	2	"E2E_P01STATUS_
+NONEWDATA"	E2E_P01STATUS_NONEWDATA	0x01	False	34	"Error: the Check function has been invoked
+but no new Data is not available since the last
+call, according to communication medium
+(e.g. RTE, COM). As a result, no E2E checks
+of Data have been consequently executed."
+SWS_E2E_00022	E2E_P01CheckStatusType	3	"E2E_P01STATUS_
+WRONGCRC"	E2E_P01STATUS_WRONGCRC	0x02	False	35	"Error: The data has been received according
+to communication medium, but
+
+1. the CRC is incorrect (applicable for all E2E
+   Profile 1 configurations) or
+
+2. the low nibble of the high byte of Data ID is
+   incorrect (applicable only for E2E Profile 1
+   with E2E_P01DataIDMode = E2E_P01_
+  DATAID_NIBBLE).
+
+The two above errors can be a result of
+corruption, incorrect addressing or
+masquerade."
+SWS_E2E_00022	E2E_P01CheckStatusType	4	E2E_P01STATUS_SYNC	E2E_P01STATUS_SYNC	0x03	False	35	"NOT VALID: The new data has been received
+after detection of an unexpected behavior of
+counter. The data has a correct CRC and a
+counter within the expected range with
+respect to the most recent Data received, but
+the determined continuity check for the
+counter is not finalized yet."
+SWS_E2E_00022	E2E_P01CheckStatusType	5	E2E_P01STATUS_INITIAL	E2E_P01STATUS_INITIAL	0x04	False	35	"Initial: The new data has been received
+according to communication medium, the
+CRC is correct, but this is the first Data since
+the receiver’s initialization or reinitialization,
+so the Counter cannot be verified yet."
+SWS_E2E_00022	E2E_P01CheckStatusType	6	"E2E_P01STATUS_
+REPEATED"	E2E_P01STATUS_REPEATED	0x08	False	35	"Error: The new data has been received
+according to communication medium, the
+CRC is correct, but the Counter is identical to
+the most recent Data received with Status _
+INITIAL, _OK, or _OKSOMELOST."
+SWS_E2E_00022	E2E_P01CheckStatusType	7	"E2E_P01STATUS_
+OKSOMELOST"	E2E_P01STATUS_OKSOMELOST	0x20	False	35	"OK: The new data has been received
+according to communication medium, the
+CRC is correct, the Counter is incremented
+by DeltaCounter (1 < DeltaCounter = Max
+DeltaCounter) with respect to the most recent
+Data received with Status _INITIAL, _OK, or
+_OKSOMELOST. This means that some Data
+in the sequence have been probably lost
+since the last correct/initial reception, but this
+is within the configured tolerance range."
+SWS_E2E_00022	E2E_P01CheckStatusType	8	"E2E_P01STATUS_
+WRONGSEQUENCE"	E2E_P01STATUS_WRONGSEQUENCE	0x40	False	35	"Error: The new data has been received
+according to communication medium, the
+CRC is correct, but the Counter Delta is too
+big (DeltaCounter > MaxDeltaCounter) with
+respect to the most recent Data received with
+Status _INITIAL, _OK, or _OKSOMELOST.
+This means that too many Data in the
+sequence have been probably lost since the
+last correct/initial reception."
+SWS_E2E_00214	E2E_P02CheckStatusType	1	E2E_P02STATUS_OK	E2E_P02STATUS_OK	0x00	False	39	"OK: The new data has been received
+according to communication medium, the
+CRC is correct, the Counter is incremented
+by 1 with respect to the most recent Data
+received with Status _INITIAL, _OK, or _
+OKSOMELOST. This means that no Data has
+been lost since the last correct data
+reception."
+SWS_E2E_00214	E2E_P02CheckStatusType	2	"E2E_P02STATUS_
+NONEWDATA"	E2E_P02STATUS_NONEWDATA	0x01	False	39	"Error: the Check function has been invoked
+but no new Data is not available since the last
+call, according to communication medium
+(e.g. RTE, COM). As a result, no E2E checks
+of Data have been consequently executed."
+SWS_E2E_00214	E2E_P02CheckStatusType	3	"E2E_P02STATUS_
+WRONGCRC"	E2E_P02STATUS_WRONGCRC	0x02	False	39	"Error: The data has been received according
+to communication medium, but the CRC is
+incorrect."
+SWS_E2E_00214	E2E_P02CheckStatusType	4	E2E_P02STATUS_SYNC	E2E_P02STATUS_SYNC	0x03	False	39	"NOT VALID: The new data has been received
+after detection of an unexpected behavior of
+counter. The data has a correct CRC and a
+counter within the expected range with
+respect to the most recent Data received, but
+the determined continuity check for the
+counter is not finalized yet."
+SWS_E2E_00214	E2E_P02CheckStatusType	5	E2E_P02STATUS_INITIAL	E2E_P02STATUS_INITIAL	0x04	False	39	"Initial: The new data has been received
+according to communication medium, the
+CRC is correct, but this is the first Data since
+the receiver’s initialization or reinitialization,
+so the Counter cannot be verified yet."
+SWS_E2E_00214	E2E_P02CheckStatusType	6	"E2E_P02STATUS_
+REPEATED"	E2E_P02STATUS_REPEATED	0x08	False	39	"Error: The new data has been received
+according to communication medium, the
+CRC is correct, but the Counter is identical to
+the most recent Data received with Status _
+INITIAL, _OK, or _OKSOMELOST."
+SWS_E2E_00214	E2E_P02CheckStatusType	7	"E2E_P02STATUS_
+OKSOMELOST"	E2E_P02STATUS_OKSOMELOST	0x20	False	39	"OK: The new data has been received
+according to communication medium, the
+CRC is correct, the Counter is incremented
+by DeltaCounter (1 < DeltaCounter =Max
+DeltaCounter) with respect to the most recent
+Data received with Status _INITIAL, _OK, or
+_OKSOMELOST. This means that some Data
+in the sequence have been probably lost
+since the last correct/initial reception, but this
+is within the configured tolerance range."
+SWS_E2E_00214	E2E_P02CheckStatusType	8	"E2E_P02STATUS_
+WRONGSEQUENCE"	E2E_P02STATUS_WRONGSEQUENCE	0x40	False	39	"Error: The new data has been received
+according to communication medium, the
+CRC is correct, but the Counter Delta is too
+big (DeltaCounter > MaxDeltaCounter) with
+respect to the most recent Data received with
+Status _INITIAL, _OK, or _OKSOMELOST.
+This means that too many Data in the
+sequence have been probably lost since the
+last correct/initial reception."
+SWS_E2E_00337	E2E_P04CheckStatusType	1	E2E_P04STATUS_OK	E2E_P04STATUS_OK	0x00	False	42	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented by 1)."
+SWS_E2E_00337	E2E_P04CheckStatusType	2	"E2E_P04STATUS_
+NONEWDATA"	E2E_P04STATUS_NONEWDATA	0x01	False	42	"Error: the Check function has been invoked
+but no new Data is not available since the last
+call, according to communication medium
+(e.g. RTE, COM). As a result, no E2E checks
+of Data have been consequently executed.
+
+This may be considered similar to E2E_
+P04STATUS_REPEATED."
+SWS_E2E_00337	E2E_P04CheckStatusType	3	E2E_P04STATUS_ERROR	E2E_P04STATUS_ERROR	0x07	False	42	"Error: error not related to counters occurred
+(e.g. wrong crc, wrong length, wrong options,
+wrong Data ID)."
+SWS_E2E_00337	E2E_P04CheckStatusType	4	"E2E_P04STATUS_
+REPEATED"	E2E_P04STATUS_REPEATED	0x08	False	42	"Error: the checks of the Data in this cycle
+were successful, with the exception of the
+repetition."
+SWS_E2E_00337	E2E_P04CheckStatusType	5	"E2E_P04STATUS_
+OKSOMELOST"	E2E_P04STATUS_OKSOMELOST	0x20	False	42	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented within the allowed
+configured delta)."
+SWS_E2E_00337	E2E_P04CheckStatusType	6	"E2E_P04STATUS_
+WRONGSEQUENCE"	E2E_P04STATUS_WRONGSEQUENCE	0x40	False	43	"Error: the checks of the Data in this cycle
+were successful, with the exception of
+counter jump, which changed more than the
+allowed delta"
+SWS_E2E_91022	E2E_P04mCheckStatusType	1	E2E_P04MSTATUS_OK	E2E_P04MSTATUS_OK	0x00	False	45	–
+SWS_E2E_91022	E2E_P04mCheckStatusType	2	"E2E_P04MSTATUS_
+NONEWDATA"	E2E_P04MSTATUS_NONEWDATA	0x01	False	46	"Error: the Check function has been invoked
+but no new Data is not available since the last
+call, according to communication medium
+(e.g. RTE, COM). As a result, no E2E checks
+of Data have been consequently executed.
+
+This may be considered similar to E2E_
+P04STATUS_REPEATED."
+SWS_E2E_91022	E2E_P04mCheckStatusType	3	"E2E_P04MSTATUS_
+ERROR"	E2E_P04MSTATUS_ERROR	0x07	False	46	"Error: error not related to counters occurred
+(e.g. wrong crc, wrong length, wrong options,
+wrong Data ID)."
+SWS_E2E_91022	E2E_P04mCheckStatusType	4	"E2E_P04MSTATUS_
+REPEATED"	E2E_P04MSTATUS_REPEATED	0x08	False	46	"Error: the checks of the Data in this cycle
+were successful, with the exception of the
+repetition."
+SWS_E2E_91022	E2E_P04mCheckStatusType	5	"E2E_P04MSTATUS_
+OKSOMELOST"	E2E_P04MSTATUS_OKSOMELOST	0x20	False	46	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented within the allowed
+configured delta)."
+SWS_E2E_91022	E2E_P04mCheckStatusType	6	"E2E_P04MSTATUS_
+WRONGSEQUENCE"	E2E_P04MSTATUS_WRONGSEQUENCE	0x40	False	46	"Error: the checks of the Data in this cycle
+were successful, with the exception of
+counter jump, which changed more than the
+allowed delta"
+SWS_E2E_00440	E2E_P05CheckStatusType	1	E2E_P05STATUS_OK	E2E_P05STATUS_OK	0x00	False	49	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented by 1)."
+SWS_E2E_00440	E2E_P05CheckStatusType	2	"E2E_P05STATUS_
+NONEWDATA"	E2E_P05STATUS_NONEWDATA	0x01	False	49	"Error: the Check function has been invoked
+but no new Data is not available since the last
+call, according to communication medium
+(e.g. RTE, COM). As a result, no E2E checks
+of Data have been consequently executed.
+
+This may be considered similar to E2E_
+P05STATUS_REPEATED."
+SWS_E2E_00440	E2E_P05CheckStatusType	3	E2E_P05STATUS_ERROR	E2E_P05STATUS_ERROR	0x07	False	49	"Error: error not related to counters occurred
+(e.g. wrong crc, wrong length)."
+SWS_E2E_00440	E2E_P05CheckStatusType	4	"E2E_P05STATUS_
+REPEATED"	E2E_P05STATUS_REPEATED	0x08	False	49	"Error: the checks of the Data in this cycle
+were successful, with the exception of the
+repetition."
+SWS_E2E_00440	E2E_P05CheckStatusType	5	"E2E_P05STATUS_
+OKSOMELOST"	E2E_P05STATUS_OKSOMELOST	0x20	False	49	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented within the allowed
+configured delta)."
+SWS_E2E_00440	E2E_P05CheckStatusType	6	"E2E_P05STATUS_
+WRONGSEQUENCE"	E2E_P05STATUS_WRONGSEQUENCE	0x40	False	49	"Error: the checks of the Data in this cycle
+were successful, with the exception of
+counter jump, which changed more than the
+allowed delta"
+SWS_E2E_00445	E2E_P06CheckStatusType	1	E2E_P06STATUS_OK	E2E_P06STATUS_OK	0x00	False	52	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented by 1)."
+SWS_E2E_00445	E2E_P06CheckStatusType	2	"E2E_P06STATUS_
+NONEWDATA"	E2E_P06STATUS_NONEWDATA	0x01	False	52	"Error: the Check function has been invoked
+but no new Data is not available since the last
+call, according to communication medium
+(e.g. RTE, COM). As a result, no E2E checks
+of Data have been consequently executed.
+
+This may be considered similar to E2E_
+P06STATUS_REPEATED."
+SWS_E2E_00445	E2E_P06CheckStatusType	3	E2E_P06STATUS_ERROR	E2E_P06STATUS_ERROR	0x07	False	52	"Error: error not related to counters occurred
+(e.g. wrong crc, wrong length)."
+SWS_E2E_00445	E2E_P06CheckStatusType	4	"E2E_P06STATUS_
+REPEATED"	E2E_P06STATUS_REPEATED	0x08	False	52	"Error: the checks of the Data in this cycle
+were successful, with the exception of the
+repetition."
+SWS_E2E_00445	E2E_P06CheckStatusType	5	"E2E_P06STATUS_
+OKSOMELOST"	E2E_P06STATUS_OKSOMELOST	0x20	False	52	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented within the allowed
+configured delta)."
+SWS_E2E_00445	E2E_P06CheckStatusType	6	"E2E_P06STATUS_
+WRONGSEQUENCE"	E2E_P06STATUS_WRONGSEQUENCE	0x40	False	53	"Error: the checks of the Data in this cycle
+were successful, with the exception of
+counter jump, which changed more than the
+allowed delta"
+SWS_E2E_00591	E2E_P07CheckStatusType	1	E2E_P07STATUS_OK	E2E_P07STATUS_OK	0x00	False	55	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented by 1)."
+SWS_E2E_00591	E2E_P07CheckStatusType	2	"E2E_P07STATUS_
+NONEWDATA"	E2E_P07STATUS_NONEWDATA	0x01	False	56	"Error: the Check function has been invoked
+but no new Data is not available since the last
+call, according to communication medium
+(e.g. RTE, COM). As a result, no E2E checks
+of Data have been consequently executed.
+
+This may be considered similar to E2E_
+P07STATUS_REPEATED."
+SWS_E2E_00591	E2E_P07CheckStatusType	3	E2E_P07STATUS_ERROR	E2E_P07STATUS_ERROR	0x07	False	56	"Error: error not related to counters occurred
+(e.g. wrong crc, wrong length, wrong options,
+wrong Data ID)."
+SWS_E2E_00591	E2E_P07CheckStatusType	4	"E2E_P07STATUS_
+REPEATED"	E2E_P07STATUS_REPEATED	0x08	False	56	"Error: the checks of the Data in this cycle
+were successful, with the exception of the
+repetition."
+SWS_E2E_00591	E2E_P07CheckStatusType	5	"E2E_P07STATUS_
+OKSOMELOST"	E2E_P07STATUS_OKSOMELOST	0x20	False	56	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented within the allowed
+configured delta)."
+SWS_E2E_00591	E2E_P07CheckStatusType	6	"E2E_P07STATUS_
+WRONGSEQUENCE"	E2E_P07STATUS_WRONGSEQUENCE	0x40	False	56	"Error: the checks of the Data in this cycle
+were successful, with the exception of
+counter jump, which changed more than the
+allowed delta"
+SWS_E2E_91009	E2E_P07mCheckStatusType	1	E2E_P07MSTATUS_OK	E2E_P07MSTATUS_OK	0x00	False	59	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented by 1)."
+SWS_E2E_91009	E2E_P07mCheckStatusType	2	"E2E_P07MSTATUS_
+NONEWDATA"	E2E_P07MSTATUS_NONEWDATA	0x01	False	59	"Error: the Check function has been invoked
+but no new Data is not available since the last
+call, according to communication medium
+(e.g. RTE, COM). As a result, no E2E checks
+of Data have been consequently executed.
+
+This may be considered similar to E2E_
+P07STATUS_REPEATED."
+SWS_E2E_91009	E2E_P07mCheckStatusType	3	"E2E_P07MSTATUS_
+ERROR"	E2E_P07MSTATUS_ERROR	0x07	False	59	"Error: error not related to counters occurred
+(e.g. wrong crc, wrong length, wrong options,
+wrong Data ID)."
+SWS_E2E_91009	E2E_P07mCheckStatusType	4	"E2E_P07MSTATUS_
+REPEATED"	E2E_P07MSTATUS_REPEATED	0x08	False	59	"Error: the checks of the Data in this cycle
+were successful, with the exception of the
+repetition."
+SWS_E2E_91009	E2E_P07mCheckStatusType	5	"E2E_P07MSTATUS_
+OKSOMELOST"	E2E_P07MSTATUS_OKSOMELOST	0x20	False	59	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented within the allowed
+configured delta)."
+SWS_E2E_91009	E2E_P07mCheckStatusType	6	"E2E_P07MSTATUS_
+WRONGSEQUENCE"	E2E_P07MSTATUS_WRONGSEQUENCE	0x40	False	59	"Error: the checks of the Data in this cycle
+were successful, with the exception of
+counter jump, which changed more than the
+allowed delta"
+SWS_E2E_91035	E2E_P08CheckStatusType	1	E2E_P08STATUS_OK	E2E_P08STATUS_OK	0x00	False	62	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented by 1)."
+SWS_E2E_91035	E2E_P08CheckStatusType	2	"E2E_P08STATUS_
+NONEWDATA"	E2E_P08STATUS_NONEWDATA	0x01	False	62	"Error: the Check function has been invoked
+but no new Data is not available since the last
+call, according to communication medium
+(e.g. RTE, COM). As a result, no E2E checks
+of Data have been consequently executed.
+This may be considered similar to E2E_
+P08STATUS_REPEATED."
+SWS_E2E_91035	E2E_P08CheckStatusType	3	E2E_P08STATUS_ERROR	E2E_P08STATUS_ERROR	0x07	False	62	"Error: error not related to counters occurred
+(e.g. wrong crc, wrong length, wrong options,
+wrong Data ID)."
+SWS_E2E_91035	E2E_P08CheckStatusType	4	"E2E_P08STATUS_
+REPEATED"	E2E_P08STATUS_REPEATED	0x08	False	62	"Error: the checks of the Data in this cycle
+were successful, with the exception of the
+repetition."
+SWS_E2E_91035	E2E_P08CheckStatusType	5	"E2E_P08STATUS_
+OKSOMELOST"	E2E_P08STATUS_OKSOMELOST	0x20	False	62	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented within the allowed
+configured delta)."
+SWS_E2E_91035	E2E_P08CheckStatusType	6	"E2E_P08STATUS_
+WRONGSEQUENCE"	E2E_P08STATUS_WRONGSEQUENCE	0x40	False	62	"Error: the checks of the Data in this cycle
+were successful, with the exception of
+counter jump, which changed more than the
+allowed delta"
+SWS_E2E_91076	E2E_P08mCheckStatusType	1	E2E_P08MSTATUS_OK	E2E_P08MSTATUS_OK	0x00	False	65	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented by 1)."
+SWS_E2E_91076	E2E_P08mCheckStatusType	2	"E2E_P08MSTATUS_
+NONEWDATA"	E2E_P08MSTATUS_NONEWDATA	0x01	False	65	"Error: the Check function has been invoked
+but no new Data is not available since the last
+call, according to communication medium
+(e.g. RTE, COM). As a result, no E2E checks
+of Data have been consequently executed.
+This may be considered similar to E2E_
+P08MSTATUS_REPEATED."
+SWS_E2E_91076	E2E_P08mCheckStatusType	3	"E2E_P08MSTATUS_
+ERROR"	E2E_P08MSTATUS_ERROR	0x07	False	65	"Error: error not related to counters occurred
+(e.g. wrong crc, wrong length, wrong options,
+wrong Data ID)."
+SWS_E2E_91076	E2E_P08mCheckStatusType	4	"E2E_P08MSTATUS_
+REPEATED"	E2E_P08MSTATUS_REPEATED	0x08	False	65	"Error: the checks of the Data in this cycle
+were successful, with the exception of the
+repetition."
+SWS_E2E_91076	E2E_P08mCheckStatusType	5	"E2E_P08MSTATUS_
+OKSOMELOST"	E2E_P08MSTATUS_OKSOMELOST	0x20	False	65	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented within the allowed
+configured delta)."
+SWS_E2E_91076	E2E_P08mCheckStatusType	6	"E2E_P08MSTATUS_
+WRONGSEQUENCE"	E2E_P08MSTATUS_WRONGSEQUENCE	0x40	False	66	"Error: the checks of the Data in this cycle
+were successful, with the exception of
+counter jump, which changed more than the
+allowed delta."
+SWS_E2E_00566	E2E_P11DataIDMode	1	E2E_P11_DATAID_BOTH	E2E_P11_DATAID_BOTH	0	False	67	"Two bytes are included in the CRC (double ID
+configuration) This is used in E2E variant 1A."
+SWS_E2E_00566	E2E_P11DataIDMode	2	E2E_P11_DATAID_NIBBLE	E2E_P11_DATAID_NIBBLE	3	False	67	"The low byte is included in the implicit CRC
+calculation, the low nibble of the high byte is
+transmitted along with the data (i.e. it is
+explicitly included), the high nibble of the high
+byte is not used. This is applicable for the IDs
+up to 12 bits. This is used in E2E variant 1C."
+SWS_E2E_00564	E2E_P11CheckStatusType	1	E2E_P11STATUS_OK	E2E_P11STATUS_OK	0x00	False	69	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented by 1)."
+SWS_E2E_00564	E2E_P11CheckStatusType	2	"E2E_P11STATUS_
+NONEWDATA"	E2E_P11STATUS_NONEWDATA	0x01	False	69	"Error: the Check function has been invoked
+but no new Data is not available since the last
+call, according to communication medium
+(e.g. RTE, COM). As a result, no E2E checks
+of Data have been consequently executed.
+
+This may be considered similar to E2E_
+P11STATUS_REPEATED."
+SWS_E2E_00564	E2E_P11CheckStatusType	3	E2E_P11STATUS_ERROR	E2E_P11STATUS_ERROR	0x07	False	69	"Error: error not related to counters occurred
+(e.g. wrong crc, wrong length)."
+SWS_E2E_00564	E2E_P11CheckStatusType	4	"E2E_P11STATUS_
+REPEATED"	E2E_P11STATUS_REPEATED	0x08	False	69	"Error: the checks of the Data in this cycle
+were successful, with the exception of the
+repetition."
+SWS_E2E_00564	E2E_P11CheckStatusType	5	"E2E_P11STATUS_
+OKSOMELOST"	E2E_P11STATUS_OKSOMELOST	0x20	False	69	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented within the allowed
+configured delta)."
+SWS_E2E_00564	E2E_P11CheckStatusType	6	"E2E_P11STATUS_
+WRONGSEQUENCE"	E2E_P11STATUS_WRONGSEQUENCE	0x40	False	70	"Error: the checks of the Data in this cycle
+were successful, with the exception of
+counter jump, which changed more than the
+allowed delta"
+SWS_E2E_00569	E2E_P22CheckStatusType	1	E2E_P22STATUS_OK	E2E_P22STATUS_OK	0x00	False	73	"OK: The new data has been received
+according to communication medium, the
+CRC is correct, the Counter is incremented
+by 1 with respect to the most recent Data
+received with Status _INITIAL, _OK, or _
+OKSOMELOST. This means that no Data has
+been lost since the last correct data
+reception."
+SWS_E2E_00569	E2E_P22CheckStatusType	2	"E2E_P22STATUS_
+NONEWDATA"	E2E_P22STATUS_NONEWDATA	0x01	False	73	"Error: the Check function has been invoked
+but no new Data is not available since the last
+call, according to communication medium
+(e.g. RTE, COM). As a result, no E2E checks
+of Data have been consequently executed."
+SWS_E2E_00569	E2E_P22CheckStatusType	3	E2E_P22STATUS_ERROR	E2E_P22STATUS_ERROR	0x07	False	73	"Error: The data has been received according
+to communication medium, but the CRC is
+incorrect."
+SWS_E2E_00569	E2E_P22CheckStatusType	4	"E2E_P22STATUS_
+REPEATED"	E2E_P22STATUS_REPEATED	0x08	False	73	"Error: The new data has been received
+according to communication medium, the
+CRC is correct, but the Counter is identical to
+the most recent Data received with Status _
+INITIAL, _OK, or _OKSOMELOST."
+SWS_E2E_00569	E2E_P22CheckStatusType	5	"E2E_P22STATUS_
+OKSOMELOST"	E2E_P22STATUS_OKSOMELOST	0x20	False	73	"OK: The new data has been received
+according to communication medium, the
+CRC is correct, the Counter is incremented
+by DeltaCounter (1 < DeltaCounter =Max
+DeltaCounter) with respect to the most recent
+Data received with Status _INITIAL, _OK, or
+_OKSOMELOST. This means that some Data
+in the sequence have been probably lost
+since the last correct/initial reception, but this
+is within the configured tolerance range."
+SWS_E2E_00569	E2E_P22CheckStatusType	6	"E2E_P22STATUS_
+WRONGSEQUENCE"	E2E_P22STATUS_WRONGSEQUENCE	0x40	False	73	"Error: The new data has been received
+according to communication medium, the
+CRC is correct, but the Counter Delta is too
+big (DeltaCounter > MaxDeltaCounter) with
+respect to the most recent Data received with
+Status _INITIAL, _OK, or _OKSOMELOST.
+This means that too many Data in the
+sequence have been probably lost since the
+last correct/initial reception."
+SWS_E2E_91026	E2E_P44CheckStatusType	1	E2E_P44STATUS_OK	E2E_P44STATUS_OK	0x00	False	76	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented by 1)."
+SWS_E2E_91026	E2E_P44CheckStatusType	2	"E2E_P44STATUS_
+NONEWDATA"	E2E_P44STATUS_NONEWDATA	0x01	False	76	"Error: the Check function has been invoked
+but no new Data is not available since the last
+call, according to communication medium
+(e.g. RTE, COM). As a result, no E2E checks
+of Data have been consequently executed.
+This may be considered similar to E2E_
+P44STATUS_REPEATED."
+SWS_E2E_91026	E2E_P44CheckStatusType	3	E2E_P44STATUS_ERROR	E2E_P44STATUS_ERROR	0x07	False	76	"Error: error not related to counters occurred
+(e.g. wrong crc, wrong length, wrong options,
+wrong Data ID)."
+SWS_E2E_91026	E2E_P44CheckStatusType	4	"E2E_P44STATUS_
+REPEATED"	E2E_P44STATUS_REPEATED	0x08	False	76	"Error: the checks of the Data in this cycle
+were successful, with the exception of the
+repetition."
+SWS_E2E_91026	E2E_P44CheckStatusType	5	"E2E_P44STATUS_
+OKSOMELOST"	E2E_P44STATUS_OKSOMELOST	0x20	False	76	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented within the allowed
+configured delta)."
+SWS_E2E_91026	E2E_P44CheckStatusType	6	"E2E_P44STATUS_
+WRONGSEQUENCE"	E2E_P44STATUS_WRONGSEQUENCE	0x40	False	76	"Error: the checks of the Data in this cycle
+were successful, with the exception of
+counter jump, which changed more than the
+allowed delta"
+SWS_E2E_91080	E2E_P44mCheckStatusType	1	E2E_P44MSTATUS_OK	E2E_P44MSTATUS_OK	0x00	False	79	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented by 1)."
+SWS_E2E_91080	E2E_P44mCheckStatusType	2	"E2E_P44MSTATUS_
+NONEWDATA"	E2E_P44MSTATUS_NONEWDATA	0x01	False	79	"Error: the Check function has been invoked
+but no new Data is not available since the last
+call, according to communication medium
+(e.g. RTE, COM). As a result, no E2E checks
+of Data have been consequently executed.
+This may be considered similar to E2E_
+P44MSTATUS_REPEATED."
+SWS_E2E_91080	E2E_P44mCheckStatusType	3	"E2E_P44MSTATUS_
+ERROR"	E2E_P44MSTATUS_ERROR	0x07	False	79	"Error: error not related to counters occurred
+(e.g. wrong crc, wrong length, wrong options,
+wrong Data ID)."
+SWS_E2E_91080	E2E_P44mCheckStatusType	4	"E2E_P44MSTATUS_
+REPEATED"	E2E_P44MSTATUS_REPEATED	0x08	False	79	"Error: the checks of the Data in this cycle
+were successful, with the exception of the
+repetition."
+SWS_E2E_91080	E2E_P44mCheckStatusType	5	"E2E_P44MSTATUS_
+OKSOMELOST"	E2E_P44MSTATUS_OKSOMELOST	0x20	False	79	"OK: the checks of the Data in this cycle were
+successful (including counter check, which
+was incremented within the allowed
+configured delta)."
+SWS_E2E_91080	E2E_P44mCheckStatusType	6	"E2E_P44MSTATUS_
+WRONGSEQUENCE"	E2E_P44MSTATUS_WRONGSEQUENCE	0x40	False	80	"Error: the checks of the Data in this cycle
+were successful, with the exception of
+counter jump, which changed more than the
+allowed delta."
+SWS_E2E_00347	E2E_PCheckStatusType	1	E2E_P_OK	E2E_P_OK	0x00	False	83	"OK: the checks of the Data in this cycle were
+successful (including counter check)."
+SWS_E2E_00347	E2E_PCheckStatusType	2	E2E_P_REPEATED	E2E_P_REPEATED	0x01	False	83	Data has a repeated counter.
+SWS_E2E_00347	E2E_PCheckStatusType	3	"E2E_P_
+WRONGSEQUENCE"	E2E_P_WRONGSEQUENCE	0x02	False	83	"The checks of the Data in this cycle were
+successful, with the exception of counter
+jump, which changed more than the allowed
+delta."
+SWS_E2E_00347	E2E_PCheckStatusType	4	E2E_P_ERROR	E2E_P_ERROR	0x03	False	83	"Error not related to counters occurred (e.g.
+wrong crc, wrong length, wrong Data ID) or
+the return of the check function was not OK."
+SWS_E2E_00347	E2E_PCheckStatusType	5	E2E_P_NOTAVAILABLE	E2E_P_NOTAVAILABLE	0x04	False	83	"No value has been received yet (e.g. during
+initialization). This is used as the initialization
+value for the buffer, it is not returned by any
+E2E profile."
+SWS_E2E_00347	E2E_PCheckStatusType	6	E2E_P_NONEWDATA	E2E_P_NONEWDATA	0x05	False	83	No new data is available.
+SWS_E2E_00347	E2E_PCheckStatusType	7	reserved	reserved	0x07, 0x0F	True	83	"reserved for runtime errors (shall not be used
+for any status in future)."
+SWS_E2E_00344	E2E_SMStateType	1	E2E_SM_VALID	E2E_SM_VALID	0x00	False	86	"Communication functioning properly
+according to E2E, data can be used."
+SWS_E2E_00344	E2E_SMStateType	2	E2E_SM_DEINIT	E2E_SM_DEINIT	0x01	False	86	"State before E2E_SMCheckInit() is invoked,
+data cannot be used."
+SWS_E2E_00344	E2E_SMStateType	3	E2E_SM_NODATA	E2E_SM_NODATA	0x02	False	86	"No data from the sender is available since the
+initialization, data cannot be used."
+SWS_E2E_00344	E2E_SMStateType	4	E2E_SM_INIT	E2E_SM_INIT	0x03	False	86	"There has been some data received since
+startup, but it is not yet possible use it, data
+cannot be used."
+SWS_E2E_00344	E2E_SMStateType	5	E2E_SM_INVALID	E2E_SM_INVALID	0x04	False	86	"Communication not functioning properly, data
+cannot be used."
+SWS_E2E_00344	E2E_SMStateType	6	reserved	reserved	0x07, 0x0F	True	86	"reserved for runtime errors (shall not be used
+for any state in future)"

@@ -1,0 +1,22 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+find_dependency(Threads)
+
+include("${CMAKE_CURRENT_LIST_DIR}/autoethTargets.cmake")
+
+# Re-export the documented imported names regardless of which library kind was
+# installed, so consumers link against autoeth::core/e2e/runtime.
+foreach(component IN ITEMS core e2e runtime)
+  if(TARGET autoeth::autoeth_${component}_shared AND NOT TARGET autoeth::${component})
+    add_library(autoeth::${component} INTERFACE IMPORTED)
+    set_target_properties(autoeth::${component} PROPERTIES
+      INTERFACE_LINK_LIBRARIES autoeth::autoeth_${component}_shared)
+  elseif(TARGET autoeth::autoeth_${component}_static AND NOT TARGET autoeth::${component})
+    add_library(autoeth::${component} INTERFACE IMPORTED)
+    set_target_properties(autoeth::${component} PROPERTIES
+      INTERFACE_LINK_LIBRARIES autoeth::autoeth_${component}_static)
+  endif()
+endforeach()
+
+check_required_components(autoeth)

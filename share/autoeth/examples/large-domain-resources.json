@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "resources": {
+    "max_frame_bytes": 536870944,
+    "max_owned_payload_bytes": 2415919104,
+    "max_active_rpcs": 65535
+  }
+}

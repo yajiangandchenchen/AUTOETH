@@ -1,0 +1,16 @@
+# Build output
+/build/
+/build-*/
+cmake-build-*/
+
+# Static analysis artifacts (regenerable evidence, not source)
+/.static-analysis/
+
+# Editor and OS noise
+*.o
+*.a
+*.so
+*.so.*
+*.swp
+.DS_Store
+compile_commands.json
