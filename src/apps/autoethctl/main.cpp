@@ -9,7 +9,7 @@
 
 #include "autoeth/runtime.hpp"
 
-namespace {
+namespace app_autoethctl_detail {
 
 void PrintUsage() {
   std::fprintf(stderr,
@@ -216,7 +216,19 @@ int RunInspectState(const std::string& path) {
   return 0;
 }
 
-}  // namespace
+}  // namespace app_autoethctl_detail
+
+using app_autoethctl_detail::PrintUsage;
+using app_autoethctl_detail::ReadWholeFile;
+using app_autoethctl_detail::WriteWholeFile;
+using app_autoethctl_detail::HexNibble;
+using app_autoethctl_detail::ParseHex;
+using app_autoethctl_detail::RunValidateConfig;
+using app_autoethctl_detail::RunValidateSchema;
+using app_autoethctl_detail::RunDecodeFrame;
+using app_autoethctl_detail::RunInspectCapture;
+using app_autoethctl_detail::RunE2eCommand;
+using app_autoethctl_detail::RunInspectState;
 
 int main(int argc, char** argv) {
   if (argc < 2) {

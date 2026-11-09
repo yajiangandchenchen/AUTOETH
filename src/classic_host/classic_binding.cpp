@@ -13,7 +13,7 @@ void DiagnosticObserver::OnDiagnostic(const ClassicDiagnostic& diagnostic) noexc
   (void)diagnostic;
 }
 
-namespace {
+namespace classic_classic_binding_detail {
 
 struct BindingState {
   bool bound;
@@ -78,7 +78,12 @@ bool ValidateConfig(const ClassicHostConfig& config) noexcept {
   return true;
 }
 
-}  // namespace
+}  // namespace classic_classic_binding_detail
+
+using classic_classic_binding_detail::BindingState;
+using classic_classic_binding_detail::g_binding;
+
+using classic_classic_binding_detail::ValidateConfig;
 
 Status bind(Runtime& runtime, const ClassicHostConfig& config) noexcept {
   if (g_binding.bound) {

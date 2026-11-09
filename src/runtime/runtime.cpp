@@ -8,7 +8,7 @@
 #include "autoeth/runtime.hpp"
 
 namespace autoeth {
-namespace {
+namespace runtime_runtime_detail {
 
 std::uint64_t NextGeneration() noexcept {
   // Process-wide monotonic allocator that never wraps (R8.3).
@@ -28,7 +28,9 @@ struct Admission {
   DurationNs timeout;
 };
 
-}  // namespace
+}  // namespace runtime_runtime_detail
+
+using runtime_runtime_detail::NextGeneration;
 
 Runtime::Runtime() noexcept = default;
 

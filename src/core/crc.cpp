@@ -5,7 +5,7 @@
 
 #include "autoeth/classic/Crc.h"
 
-namespace {
+namespace core_detail {
 
 uint8_t Crc8Reflect(uint8_t value) noexcept {
   uint8_t result = 0u;
@@ -43,7 +43,11 @@ uint64_t Crc64Reflect(uint64_t value) noexcept {
   return result;
 }
 
-}  // namespace
+}  // namespace core_detail
+
+using core_detail::Crc8Reflect;
+using core_detail::Crc32Reflect;
+using core_detail::Crc64Reflect;
 
 extern "C" {
 

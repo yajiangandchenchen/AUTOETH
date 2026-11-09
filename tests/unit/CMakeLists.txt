@@ -1,4 +1,4 @@
-add_executable(autoeth_tests test_main.cpp)
+add_executable(autoeth_tests test_main.cpp test_model_boundaries.cpp)
 target_link_libraries(autoeth_tests PRIVATE autoeth::runtime)
 target_include_directories(autoeth_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_compile_options(autoeth_tests PRIVATE

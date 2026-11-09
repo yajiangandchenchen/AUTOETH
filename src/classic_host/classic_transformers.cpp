@@ -6,7 +6,7 @@
 #include "autoeth/classic/E2EXf.h"
 #include "autoeth/classic/SomeIpXf.h"
 
-namespace {
+namespace classic_classic_transformers_detail {
 
 const uint8 kSomeIpXfOk = 0x00u;
 const uint8 kSomeIpXfErrSerialization = 0x81u;
@@ -51,7 +51,24 @@ bool CopyLabel(const uint8* source, uint32 units, uint8* destination, uint32 cap
   return true;
 }
 
-}  // namespace
+}  // namespace classic_classic_transformers_detail
+
+using classic_classic_transformers_detail::kSomeIpXfOk;
+using classic_classic_transformers_detail::kSomeIpXfErrSerialization;
+using classic_classic_transformers_detail::kSomeIpXfNoBoundContext;
+using classic_classic_transformers_detail::WriteU32Big;
+using classic_classic_transformers_detail::WriteU16Big;
+using classic_classic_transformers_detail::ReadU32Big;
+using classic_classic_transformers_detail::ReadU16Big;
+using classic_classic_transformers_detail::kVehicleSnapshotWireBytes;
+using classic_classic_transformers_detail::kCalibrationWireBytes;
+using classic_classic_transformers_detail::CopyLabel;
+
+using classic_classic_transformers_detail::WriteU32Big;
+using classic_classic_transformers_detail::WriteU16Big;
+using classic_classic_transformers_detail::ReadU32Big;
+using classic_classic_transformers_detail::ReadU16Big;
+using classic_classic_transformers_detail::CopyLabel;
 
 extern "C" {
 

@@ -3,7 +3,7 @@
 #include "autoeth/wire.hpp"
 
 namespace autoeth {
-namespace {
+namespace core_detail {
 
 std::uint16_t ReadU16(ByteView input, std::size_t offset) noexcept {
   const std::uint32_t high = input.data[offset];
@@ -47,7 +47,15 @@ bool RequiresZeroReturnCode(std::uint8_t message_type) noexcept {
   return message_type == 0x00u || message_type == 0x01u || message_type == 0x02u;
 }
 
-}  // namespace
+}  // namespace core_detail
+
+using core_detail::ReadU16;
+using core_detail::ReadU32;
+using core_detail::WriteU16;
+using core_detail::WriteU32;
+using core_detail::IsSupportedType;
+using core_detail::IsForbiddenReturnCode;
+using core_detail::RequiresZeroReturnCode;
 
 RequestRegistry::RequestRegistry() noexcept : magic_(0x52455152u) {}
 
@@ -83,6 +91,9 @@ Status decode_header(ByteView input, Header& out, std::size_t& frame_bytes) noex
 
 Status encode_header(const Header& header, std::size_t payload_bytes, MutableByteView output,
                      std::size_t& written) noexcept {
+  // The caller owns the length field; this parameter documents the contract
+  // and is validated by encode_message, not consumed here.
+  (void)payload_bytes;
   if (output.IsNullRange()) {
     return Status::Error(ModuleCore, NullRange);
   }

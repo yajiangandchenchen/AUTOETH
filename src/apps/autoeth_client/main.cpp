@@ -12,7 +12,7 @@
 #include "autoeth/build_info.hpp"
 #include "autoeth/runtime.hpp"
 
-namespace {
+namespace app_autoeth_client_detail {
 
 volatile std::sig_atomic_t g_interrupted = 0;
 
@@ -124,7 +124,16 @@ bool ReadWholeFile(const std::string& path, std::string& content) {
   return true;
 }
 
-}  // namespace
+}  // namespace app_autoeth_client_detail
+
+using app_autoeth_client_detail::Options;
+using app_autoeth_client_detail::g_interrupted;
+
+using app_autoeth_client_detail::HandleSignal;
+using app_autoeth_client_detail::PrintUsage;
+using app_autoeth_client_detail::ExitCodeForStatus;
+using app_autoeth_client_detail::ParseArgs;
+using app_autoeth_client_detail::ReadWholeFile;
 
 int main(int argc, char** argv) {
   Options options;

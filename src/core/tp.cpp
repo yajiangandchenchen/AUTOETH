@@ -6,7 +6,7 @@
 #include <vector>
 
 namespace autoeth {
-namespace {
+namespace core_detail {
 
 const std::size_t kTpHeaderBytes = 20u;
 
@@ -43,7 +43,13 @@ struct Assembly {
   std::uint64_t generation;
 };
 
-}  // namespace
+}  // namespace core_detail
+using core_detail::kTpHeaderBytes;
+using core_detail::Assembly;
+
+using core_detail::SegmentLengthOf;
+using core_detail::SegmentOffsetOf;
+using core_detail::SegmentMoreFlag;
 
 std::size_t NonFinalSegmentPayloadBytes(std::uint32_t configured_max,
                                         std::uint32_t datagram_capacity) noexcept {
@@ -52,7 +58,9 @@ std::size_t NonFinalSegmentPayloadBytes(std::uint32_t configured_max,
   }
   const std::uint32_t available = datagram_capacity - static_cast<std::uint32_t>(kTpHeaderBytes);
   const std::uint32_t raw = std::min(configured_max, available);
-  const std::uint32_t aligned = (raw / 16u) * 16u;
+  // Divide by 16 and rescale with shifts: 16 is a power of two and raw is
+  // unsigned, so this is exact and independent of division rounding (1-0-3).
+  const std::uint32_t aligned = (raw >> 4u) << 4u;
   return static_cast<std::size_t>(aligned);
 }
 

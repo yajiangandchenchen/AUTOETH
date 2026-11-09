@@ -5,29 +5,9 @@
 #include <algorithm>
 
 namespace autoeth {
-namespace {
+namespace core_detail {
 
-std::uint8_t ToLowerAscii(std::uint8_t value) noexcept {
-  if (value >= 'A' && value <= 'Z') {
-    return static_cast<std::uint8_t>(value - 'A' + 'a');
-  }
-  return value;
-}
-
-bool KeysEqualAsciiInsensitive(const std::vector<std::uint8_t>& lhs,
-                               const std::vector<std::uint8_t>& rhs) noexcept {
-  if (lhs.size() != rhs.size()) {
-    return false;
-  }
-  for (std::size_t index = 0u; index < lhs.size(); ++index) {
-    if (ToLowerAscii(lhs[index]) != ToLowerAscii(rhs[index])) {
-      return false;
-    }
-  }
-  return true;
-}
-
-}  // namespace
+}  // namespace core_detail
 
 bool IsActionableEndpoint(const SdEndpoint& endpoint) noexcept {
   return endpoint.port != 0u;

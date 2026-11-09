@@ -21,6 +21,11 @@ option(AUTOETH_BUILD_STATIC "Build static libraries" ON)
 option(AUTOETH_BUILD_TESTS "Build the unit tests" ON)
 option(AUTOETH_BUILD_CONSUMERS "Build the independent C99 and C++14 consumers" ON)
 
+# Off by default. Only the static-analysis scanner turns this on, to adapt its
+# own host include layout; product builds never see it.
+option(AUTOETH_ANALYSIS_HOST "Apply the static-analysis host header adaptation" OFF)
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/autoethAnalysis.cmake.in)
+
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
@@ -118,9 +123,16 @@ if(NOT autoeth_library_targets)
   message(FATAL_ERROR "At least one of AUTOETH_BUILD_SHARED/AUTOETH_BUILD_STATIC must be ON")
 endif()
 
-add_library(autoeth::core ALIAS autoeth_core_shared)
-add_library(autoeth::e2e ALIAS autoeth_e2e_shared)
-add_library(autoeth::runtime ALIAS autoeth_runtime_shared)
+# The documented imported names must resolve in either library kind, so a
+# static-only or shared-only build stays consumable (R0.4.2 / R0.4.3).
+if(TARGET autoeth_core_shared)
+  set(AUTOETH_PREFERRED_KIND shared)
+else()
+  set(AUTOETH_PREFERRED_KIND static)
+endif()
+add_library(autoeth::core ALIAS autoeth_core_${AUTOETH_PREFERRED_KIND})
+add_library(autoeth::e2e ALIAS autoeth_e2e_${AUTOETH_PREFERRED_KIND})
+add_library(autoeth::runtime ALIAS autoeth_runtime_${AUTOETH_PREFERRED_KIND})
 
 add_executable(autoethd src/apps/autoethd/main.cpp)
 target_link_libraries(autoethd PRIVATE autoeth::runtime autoeth_warnings)
@@ -162,6 +174,18 @@ install(EXPORT autoethTargets
   NAMESPACE autoeth::
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/autoeth
   FILE autoethTargets.cmake)
+
+# Native clang tooling (clang-tidy) resolves a compilation database by walking
+# up from each source file, so a database that only lives in build/ is not found
+# for sources under src/. Publish an identical copy at the source root when the
+# analysis host adapter is enabled; product builds leave the tree untouched.
+if(AUTOETH_ANALYSIS_HOST AND CMAKE_EXPORT_COMPILE_COMMANDS)
+  add_custom_target(autoeth_publish_compile_db ALL
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_BINARY_DIR}/compile_commands.json
+            ${CMAKE_CURRENT_SOURCE_DIR}/compile_commands.json
+    COMMENT "Publishing compile_commands.json for native analysis tooling")
+endif()
 
 if(AUTOETH_BUILD_CONSUMERS)
   add_subdirectory(examples/consumer_c99)

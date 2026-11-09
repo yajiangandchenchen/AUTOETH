@@ -409,6 +409,8 @@ void TestConfigLoader() {
 
 }  // namespace
 
+void RunModelCheckingDerivedTests();
+
 int main() {
   TestCheckedArithmetic();
   TestBuildInfo();
@@ -426,5 +428,6 @@ int main() {
   TestDiscovery();
   TestRuntimeAdmission();
   TestConfigLoader();
+  RunModelCheckingDerivedTests();
   return autoeth_test::Summary("autoeth_unit");
 }

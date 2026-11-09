@@ -7,7 +7,7 @@
 #include "autoeth/check.hpp"
 
 namespace autoeth {
-namespace {
+namespace core_detail {
 
 bool IsLegalAlignment(std::uint16_t bits) noexcept {
   return bits == 8u || bits == 16u || bits == 32u || bits == 64u || bits == 128u ||
@@ -34,7 +34,8 @@ std::size_t PrimitiveWidthBytes(const NodeSpec& node) noexcept {
       return 8u;
     case NodeKind::Unsigned:
     case NodeKind::Signed:
-      return static_cast<std::size_t>(node.widthBits / 8u);
+      // widthBits is a checked 8/16/32/64, so the shift is exact (1-0-3).
+      return static_cast<std::size_t>(node.widthBits >> 3u);
     default:
       break;
   }
@@ -73,7 +74,13 @@ CodecResult CheckValueKind(const NodeSpec& node, const Value& value, const Layou
   return CodecResult();
 }
 
-}  // namespace
+}  // namespace core_detail
+
+using core_detail::IsLegalAlignment;
+using core_detail::MakeError;
+using core_detail::PrimitiveWidthBytes;
+using core_detail::CheckAlignment;
+using core_detail::CheckValueKind;
 
 struct CompiledNode {
   NodeSpec spec;

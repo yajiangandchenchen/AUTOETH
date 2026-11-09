@@ -4,7 +4,7 @@
 #include "autoeth/classic/E2E.h"
 #include "autoeth/classic/Crc.h"
 
-namespace {
+namespace e2e_p08_detail {
 
 uint32 NextCounter(uint32 counter) noexcept {
   const uint32 next = static_cast<uint32>(static_cast<uint32>(counter) + 1u);
@@ -15,7 +15,10 @@ uint64 ComputeCrc(const uint8* data, uint32 length) noexcept {
   return Crc_CalculateCRC64(data, static_cast<uint32>(length), 0u, TRUE);
 }
 
-}  // namespace
+}  // namespace e2e_p08_detail
+
+using e2e_p08_detail::NextCounter;
+using e2e_p08_detail::ComputeCrc;
 
 extern "C" {
 

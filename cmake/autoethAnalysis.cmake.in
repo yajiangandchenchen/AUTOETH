@@ -1,0 +1,18 @@
+# AUTOETH static-analysis host adaptation (ONLY consumed when the analysis
+# scanner configures this project with -DAUTOETH_ANALYSIS_HOST=ON).
+#
+# The bundled analyzer ships its own clang resource headers, which lack the
+# GNU C library headers (stdlib.h, stdio.h, string.h, math.h, time.h, errno.h,
+# ctype.h). That breaks <cstdlib>'s include_next chain and produces phantom
+# "file not found" errors on correct code. Force-include the real headers from
+# the host search path; no product source file is touched.
+if(AUTOETH_ANALYSIS_HOST)
+  foreach(_header stdlib.h stdio.h string.h math.h time.h errno.h ctype.h)
+    if(EXISTS "/usr/include/${_header}")
+      add_compile_options(
+        $<$<COMPILE_LANGUAGE:CXX>:-include/usr/include/${_header}>
+        $<$<COMPILE_LANGUAGE:C>:-include/usr/include/${_header}>)
+    endif()
+  endforeach()
+  message(STATUS "AUTOETH analysis host: forcing GNU C library headers")
+endif()

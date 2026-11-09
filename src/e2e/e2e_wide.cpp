@@ -2,10 +2,11 @@
 // R6.6: the wide bit geometry converts to the classic uint32 configuration
 // with a checked narrowing that never mutates the output on failure.
 #include "autoeth/e2e.hpp"
+#include "autoeth/detail/bit_geometry.hpp"
 
 namespace autoeth {
 namespace e2e {
-namespace {
+namespace e2e_e2e_wide_detail {
 
 bool FitsU32(std::uint64_t value) noexcept {
   return value <= static_cast<std::uint64_t>(0xFFFFFFFFu);
@@ -15,7 +16,10 @@ bool NullRange(const ByteView& view) noexcept { return view.IsNullRange(); }
 
 bool NullRange(const MutableByteView& view) noexcept { return view.IsNullRange(); }
 
-}  // namespace
+}  // namespace e2e_e2e_wide_detail
+
+using e2e_e2e_wide_detail::FitsU32;
+using e2e_e2e_wide_detail::NullRange;
 
 Std_ReturnType protect_p08(const P08ConfigWide& config, E2E_P08ProtectStateType& state,
                            MutableByteView data) noexcept {
@@ -28,9 +32,9 @@ Std_ReturnType protect_p08(const P08ConfigWide& config, E2E_P08ProtectStateType&
   }
   E2E_P08ConfigType classic;
   classic.DataID = config.data_id;
-  classic.Offset = static_cast<uint32>(config.offset_bits / 8u);
-  classic.MinDataLength = static_cast<uint32>(config.min_data_length_bits / 8u);
-  classic.MaxDataLength = static_cast<uint32>(config.max_data_length_bits / 8u);
+  classic.Offset = autoeth::detail::BitsToBytes(config.offset_bits);
+  classic.MinDataLength = autoeth::detail::BitsToBytes(config.min_data_length_bits);
+  classic.MaxDataLength = autoeth::detail::BitsToBytes(config.max_data_length_bits);
   classic.MaxDeltaCounter = config.max_delta_counter;
   return E2E_P08Protect(&classic, &state, data.data, static_cast<uint32>(data.size));
 }
@@ -46,9 +50,9 @@ Std_ReturnType check_p08(const P08ConfigWide& config, E2E_P08CheckStateType& sta
   }
   E2E_P08ConfigType classic;
   classic.DataID = config.data_id;
-  classic.Offset = static_cast<uint32>(config.offset_bits / 8u);
-  classic.MinDataLength = static_cast<uint32>(config.min_data_length_bits / 8u);
-  classic.MaxDataLength = static_cast<uint32>(config.max_data_length_bits / 8u);
+  classic.Offset = autoeth::detail::BitsToBytes(config.offset_bits);
+  classic.MinDataLength = autoeth::detail::BitsToBytes(config.min_data_length_bits);
+  classic.MaxDataLength = autoeth::detail::BitsToBytes(config.max_data_length_bits);
   classic.MaxDeltaCounter = config.max_delta_counter;
   return E2E_P08Check(&classic, &state, data.data, static_cast<uint32>(data.size));
 }
@@ -65,10 +69,10 @@ Std_ReturnType protect_p08m(const P08mConfigWide& config, E2E_P08mProtectStateTy
   }
   E2E_P08mConfigType classic;
   classic.DataID = config.data_id;
-  classic.MinDataLength = static_cast<uint32>(config.min_data_length_bits / 8u);
-  classic.MaxDataLength = static_cast<uint32>(config.max_data_length_bits / 8u);
+  classic.MinDataLength = autoeth::detail::BitsToBytes(config.min_data_length_bits);
+  classic.MaxDataLength = autoeth::detail::BitsToBytes(config.max_data_length_bits);
   classic.MaxDeltaCounter = config.max_delta_counter;
-  classic.Offset = static_cast<uint32>(config.offset_bits / 8u);
+  classic.Offset = autoeth::detail::BitsToBytes(config.offset_bits);
   return E2E_P08mProtect(&classic, &state, source_id, message_type, message_result, data.data,
                          static_cast<uint32>(data.size));
 }
@@ -86,10 +90,10 @@ Std_ReturnType source_check_p08m(const P08mConfigWide& config, E2E_P08mCheckStat
   }
   E2E_P08mConfigType classic;
   classic.DataID = config.data_id;
-  classic.MinDataLength = static_cast<uint32>(config.min_data_length_bits / 8u);
-  classic.MaxDataLength = static_cast<uint32>(config.max_data_length_bits / 8u);
+  classic.MinDataLength = autoeth::detail::BitsToBytes(config.min_data_length_bits);
+  classic.MaxDataLength = autoeth::detail::BitsToBytes(config.max_data_length_bits);
   classic.MaxDeltaCounter = config.max_delta_counter;
-  classic.Offset = static_cast<uint32>(config.offset_bits / 8u);
+  classic.Offset = autoeth::detail::BitsToBytes(config.offset_bits);
   return E2E_P08mSourceCheck(&classic, &state, expected_source_id, message_type, message_result,
                              data.data, static_cast<uint32>(data.size));
 }
@@ -107,10 +111,10 @@ Std_ReturnType sink_check_p08m(const P08mConfigWide& config, E2E_P08mCheckStateT
   }
   E2E_P08mConfigType classic;
   classic.DataID = config.data_id;
-  classic.MinDataLength = static_cast<uint32>(config.min_data_length_bits / 8u);
-  classic.MaxDataLength = static_cast<uint32>(config.max_data_length_bits / 8u);
+  classic.MinDataLength = autoeth::detail::BitsToBytes(config.min_data_length_bits);
+  classic.MaxDataLength = autoeth::detail::BitsToBytes(config.max_data_length_bits);
   classic.MaxDeltaCounter = config.max_delta_counter;
-  classic.Offset = static_cast<uint32>(config.offset_bits / 8u);
+  classic.Offset = autoeth::detail::BitsToBytes(config.offset_bits);
   return E2E_P08mSinkCheck(&classic, &state, &received_source_id, message_type, message_result,
                            data.data, static_cast<uint32>(data.size));
 }
@@ -122,9 +126,9 @@ Status to_classic_p08_config(const P08ConfigWide& config, E2E_P08ConfigType& out
   }
   E2E_P08ConfigType classic;
   classic.DataID = config.data_id;
-  classic.Offset = static_cast<uint32>(config.offset_bits / 8u);
-  classic.MinDataLength = static_cast<uint32>(config.min_data_length_bits / 8u);
-  classic.MaxDataLength = static_cast<uint32>(config.max_data_length_bits / 8u);
+  classic.Offset = autoeth::detail::BitsToBytes(config.offset_bits);
+  classic.MinDataLength = autoeth::detail::BitsToBytes(config.min_data_length_bits);
+  classic.MaxDataLength = autoeth::detail::BitsToBytes(config.max_data_length_bits);
   classic.MaxDeltaCounter = config.max_delta_counter;
   out = classic;
   return Status::Success();
@@ -137,10 +141,10 @@ Status to_classic_p08m_config(const P08mConfigWide& config, E2E_P08mConfigType& 
   }
   E2E_P08mConfigType classic;
   classic.DataID = config.data_id;
-  classic.MinDataLength = static_cast<uint32>(config.min_data_length_bits / 8u);
-  classic.MaxDataLength = static_cast<uint32>(config.max_data_length_bits / 8u);
+  classic.MinDataLength = autoeth::detail::BitsToBytes(config.min_data_length_bits);
+  classic.MaxDataLength = autoeth::detail::BitsToBytes(config.max_data_length_bits);
   classic.MaxDeltaCounter = config.max_delta_counter;
-  classic.Offset = static_cast<uint32>(config.offset_bits / 8u);
+  classic.Offset = autoeth::detail::BitsToBytes(config.offset_bits);
   out = classic;
   return Status::Success();
 }

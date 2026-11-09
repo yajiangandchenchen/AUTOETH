@@ -12,7 +12,7 @@
 #include "autoeth/build_info.hpp"
 #include "autoeth/runtime.hpp"
 
-namespace {
+namespace app_autoethd_detail {
 
 volatile std::sig_atomic_t g_stop_requested = 0;
 
@@ -122,7 +122,18 @@ std::uint32_t Fnv1a(const std::vector<std::uint8_t>& bytes) {
   return hash;
 }
 
-}  // namespace
+}  // namespace app_autoethd_detail
+
+using app_autoethd_detail::Options;
+using app_autoethd_detail::g_stop_requested;
+
+using app_autoethd_detail::HandleSignal;
+using app_autoethd_detail::PrintUsage;
+using app_autoethd_detail::ParseArgs;
+using app_autoethd_detail::ReadWholeFile;
+using app_autoethd_detail::HexNibble;
+using app_autoethd_detail::ParseHexDataset;
+using app_autoethd_detail::Fnv1a;
 
 int main(int argc, char** argv) {
   Options options;

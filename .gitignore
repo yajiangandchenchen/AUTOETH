@@ -6,6 +6,9 @@ cmake-build-*/
 # Static analysis artifacts (regenerable evidence, not source)
 /.static-analysis/
 
+# Model checking artifacts (regenerable, not source)
+/.model-check/
+
 # Editor and OS noise
 *.o
 *.a
@@ -14,3 +17,5 @@ cmake-build-*/
 *.swp
 .DS_Store
 compile_commands.json
+# Published by the analysis host adapter only
+/compile_commands.json

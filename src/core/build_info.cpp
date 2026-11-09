@@ -2,13 +2,16 @@
 #include "autoeth/build_info.hpp"
 
 namespace autoeth {
-namespace {
+namespace core_detail {
 
 const char kProjectName[] = "autoeth";
 const char kProjectVersion[] = "0.1.0";
 const char kStandardRelease[] = "R24-11";
 
-}  // namespace
+}  // namespace core_detail
+using core_detail::kProjectName;
+using core_detail::kProjectVersion;
+using core_detail::kStandardRelease;
 
 BuildInfo build_info() noexcept {
   BuildInfo info;

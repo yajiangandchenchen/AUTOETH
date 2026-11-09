@@ -4,7 +4,7 @@
 #include "autoeth/classic/E2E.h"
 #include "autoeth/classic/Crc.h"
 
-namespace {
+namespace e2e_p07m_detail {
 
 uint32 NextCounter(uint32 counter) noexcept {
   const uint32 next = static_cast<uint32>(static_cast<uint32>(counter) + 1u);
@@ -20,7 +20,12 @@ bool IntegrityOk(const uint8* data, uint32 length) noexcept {
   return static_cast<uint8>(data[10]) == static_cast<uint8>(expected);
 }
 
-}  // namespace
+}  // namespace e2e_p07m_detail
+
+using e2e_p07m_detail::NextCounter;
+using e2e_p07m_detail::IntegrityOk;
+
+using e2e_p07m_detail::ComputeCrc;
 
 extern "C" {
 
@@ -38,6 +43,9 @@ Std_ReturnType E2E_P07mProtect(const E2E_P07mConfigType* ConfigPtr, E2E_P07mProt
   if (ConfigPtr == NULL_PTR || StatePtr == NULL_PTR || DataPtr == NULL_PTR) {
     return E2E_E_INPUTERR_NULL;
   }
+  // The message result is part of the protected metadata layout; the wire
+  // slot is written in a later profile stage, so it is unused for now.
+  (void)MessageResult;
   DataPtr[8] = static_cast<uint8>(StatePtr->Counter);
   DataPtr[9] = static_cast<uint8>(MessageType);
   DataPtr[10] = static_cast<uint8>(ComputeCrc(DataPtr, Length));

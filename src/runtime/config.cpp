@@ -6,7 +6,7 @@
 #include "autoeth/runtime.hpp"
 
 namespace autoeth {
-namespace {
+namespace runtime_config_detail {
 
 struct ParserState {
   ByteView input;
@@ -263,7 +263,7 @@ bool ValidateResourceAdmission(ParserState& state) noexcept {
 }
 
 
-namespace {
+namespace runtime_config_scan_detail {
 
 // Minimal owning scanner used by the document loader. It walks the top-level
 // object and extracts the fields validation depends on, while still enforcing
@@ -395,7 +395,26 @@ bool ScanObjectBody(ParserState& state, ScanContext& context, bool extract) {
   }
 }
 
-}  // namespace
+}  // namespace runtime_config_scan_detail
+
+using runtime_config_scan_detail::ScanContext;
+using runtime_config_scan_detail::ScanObjectBody;
+
+using runtime_config_detail::ParserState;
+using runtime_config_detail::DuplicateKeyGuard;
+using runtime_config_detail::Fail;
+using runtime_config_detail::SkipWhitespace;
+using runtime_config_detail::Consume;
+using runtime_config_detail::ParseString;
+using runtime_config_detail::ParseInteger;
+using runtime_config_detail::ParseBool;
+using runtime_config_detail::FillDefaultDiagnostics;
+using runtime_config_detail::ValidateConfigVersion;
+using runtime_config_detail::ValidateResources;
+using runtime_config_detail::ValidateReferences;
+using runtime_config_detail::ValidateRoles;
+using runtime_config_detail::ValidateProfiles;
+using runtime_config_detail::ValidateResourceAdmission;
 
 void ApplyDiagnostic(ParserState& state) noexcept {
   if (state.diagnostic != nullptr) {
@@ -407,10 +426,9 @@ void ApplyDiagnostic(ParserState& state) noexcept {
   }
 }
 
-}  // namespace
 
-Status load_runtime_config(ByteView utf8, const std::string& base_directory, RuntimeConfig& out,
-                           ConfigDiagnostic* diagnostic) noexcept {
+Status LoadRuntimeConfigImpl(ByteView utf8, const std::string& base_directory, RuntimeConfig& out,
+                             ConfigDiagnostic* diagnostic) noexcept {
   (void)base_directory;
   FillDefaultDiagnostics(diagnostic);
   if (utf8.IsNullRange()) {
@@ -456,6 +474,14 @@ Status load_runtime_config(ByteView utf8, const std::string& base_directory, Run
     return Status::Error(ModuleConfig, InvalidConfig);
   }
   return Status::Success();
+}
+
+}  // namespace runtime_config_detail
+
+// Public entry point: must stay in autoeth, not in the internal detail space.
+Status load_runtime_config(ByteView utf8, const std::string& base_directory, RuntimeConfig& out,
+                           ConfigDiagnostic* diagnostic) noexcept {
+  return runtime_config_detail::LoadRuntimeConfigImpl(utf8, base_directory, out, diagnostic);
 }
 
 }  // namespace autoeth

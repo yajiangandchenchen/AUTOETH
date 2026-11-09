@@ -14,7 +14,7 @@
 #include "autoeth/classic/SomeIpXf.h"
 
 namespace autoeth {
-namespace {
+namespace classic_classic_modules_detail {
 
 struct ModuleState {
   bool initialized;
@@ -41,7 +41,16 @@ void FillVersion(uint16_t module_id, Std_VersionInfoType* info) noexcept {
   }
 }
 
-}  // namespace
+}  // namespace classic_classic_modules_detail
+
+using classic_classic_modules_detail::ModuleState;
+using classic_classic_modules_detail::g_pdur;
+using classic_classic_modules_detail::g_soad;
+using classic_classic_modules_detail::g_tp;
+using classic_classic_modules_detail::g_sd;
+using classic_classic_modules_detail::g_someipxf;
+using classic_classic_modules_detail::g_e2exf;
+using classic_classic_modules_detail::FillVersion;
 }  // namespace autoeth
 
 extern "C" {
